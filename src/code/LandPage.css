@@ -70,21 +70,49 @@
   }
 }
 
-/* .App-link {
-    color: #61dafb;
-  } */
-/* @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin 1s linear;
-    }
-  }
-  
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  } */
+
+/* --------------------------------------------TOP-----------NAV-----------TRANSITION */
+.App-enter {
+  opacity: 0;
+  /* transform: scale(1); */
+}
+
+.App-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 1000ms, transform 1000ms;
+}
+
+.App-exit {
+  opacity: 1;
+}
+
+.App-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 1000ms, transform 1000ms;
+}
+
+
+
+/* --------------------------------------------TOP-----------NAV-----------TRANSITION */
+.App_top-enter {
+  opacity: 0;
+  /* transform: scale(1); */
+}
+
+.App_top-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 1000ms, transform 1000ms;
+}
+
+.App_top-exit {
+  opacity: 1;
+}
+
+.App_top-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 1000ms, transform 1000ms;
+}

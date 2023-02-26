@@ -1,34 +1,28 @@
-.nav_top {
+.sidebar {
   display: flex;
-  height: fit-content;
-  background-color: #fff;
+  height: 100vh;
+  /* position: fixed; */
+}
+
+.sidebar_closed {
+  display: flex;
+  height: 100vh;
+  position: fixed;
+  display: none;
+}
+
+.nav_btn {
+  position: fixed;
+}
+
+.nav_top {
+  width: 100vw;
+  display: flex;
   height: 5vh;
 }
 
-.nav_menus_left {
-  width: 15vw;
-  height: 100vh;
-  background: #fff;
+.nav_top_menus {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.nav_menus_top {
-  display: flex;
-  max-height: 5vh;
-}
-
-.left_menus {
-  display: flex;
-}
-
-.nav_img_cont {
-  position: fixed;
-  display: flex;
-  width: 15vw;
-  justify-content: space-between;
-  height: fit-content;
 }
 
 .hide {
@@ -37,10 +31,32 @@
   right: 0;
 }
 
-.sign {
-  height: 30vh;
-}
-
 .sign_top {
   padding-left: 50px;
 }
+
+/* --------------------------------------TOP-NAV-CSSTRANSITIONS -start*/
+.nav_top-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.nav_top-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.nav_top-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nav_top-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 400ms, transform 400ms;
+}
+
+
+/* --------------------------------------TOP-NAV-CSSTRANSITIONS -ends*/

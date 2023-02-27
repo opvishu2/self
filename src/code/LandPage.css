@@ -1,0 +1,107 @@
+::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+
+.App::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+
+.App {
+  height: fit-content;
+  text-align: center;
+  display: flex;
+}
+
+.App_top {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  /* height: 100%; */
+  min-height: 100vh;
+  width: 85vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.left_c {
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right_c {
+  width: 35%;
+  display: flex;
+  align-items: center;
+}
+
+.App-logo {
+  max-width: 100%;
+}
+
+.typed {
+  overflow: hidden;
+  font-size: 38px;
+  white-space: nowrap;
+  border-right: 2px solid;
+  width: 0;
+  animation: typing 1.5s steps(30, end) forwards, blinking 1s 2s;
+}
+
+/* --------------------------------------content -CSSTRANSITIONS -start*/
+
+.content-enter {
+  transform: translateY(-5vh);
+}
+
+.content-enter-active {
+  /* opacity: 1; */
+  transform: translateY(0);
+  /* transition: opacity 300ms, transform 300ms; */
+  transition: transform 300ms;
+}
+
+.content-exit {
+  transform: translateY(0%);
+}
+
+.content-exit-active {
+  transform: translateY(-5vh);
+  transition: transform 300ms;
+}
+
+/* --------------------------------------content-CSSTRANSITIONS -ends*/
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 45%
+  }
+}
+
+@keyframes blinking {
+  0% {
+    border-right-color: transparent
+  }
+
+  50% {
+    border-right-color: #61dafb
+  }
+
+  100% {
+    border-right-color: transparent
+  }
+}

@@ -1,0 +1,114 @@
+.sidebar {
+  display: flex;
+  height: 100vh;
+  /* position: fixed; */
+}
+
+.sidebar_closed {
+  display: flex;
+  height: 100vh;
+  position: fixed;
+  display: none;
+}
+
+.sidebar_body {
+  display: flex;
+  max-width: 15vw;
+}
+
+.bar_upper_portion {
+  height: 25vh;
+}
+
+.side_settings {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  padding: 0 10px 0 10px;
+  justify-content: space-between;
+}
+
+.bar_logo_cont {
+
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar_logo {
+  height: 15vh;
+  object-fit: cover
+}
+
+.bar_middle_portion {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bar_bottom_protion {
+  height: 25vh;
+}
+
+.arrow_up {}
+
+.nav_btn {
+  position: fixed;
+}
+
+.nav_top {
+  width: calc(100vw-40px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5vh;
+  padding: 0 20px 0 20px;
+}
+
+.top_nav_right {
+  min-width: 40%;
+  display: flex;
+  width: fit-content;
+}
+
+.nav_top_menus {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hide {}
+
+.sign_top {
+  display: flex;
+  align-items: center;
+}
+
+/* --------------------------------------TOP-NAV-CSSTRANSITIONS -start*/
+.nav_top-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.nav_top-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 1000ms, transform 1000ms;
+}
+
+.nav_top-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nav_top-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 1000ms, transform 1000ms;
+}
+
+
+/* --------------------------------------TOP-NAV-CSSTRANSITIONS -ends*/

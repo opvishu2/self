@@ -14,7 +14,7 @@ export default function LandPage(props) {
     const theme = useSelector((state) => state.AllReducerCombined.themeChangeReducers.active_theme)
     const dispatch = useDispatch()
     const [top_nav, toggleTopNav] = useState(false)
-    const [nav, setNav] = useState(false)
+    const [nav, setNav] = useState("top")
 
     const findImage = () => {
         if (theme == "ng1") {
@@ -23,6 +23,7 @@ export default function LandPage(props) {
             return self_dy1
         }
     }
+
 
     return (<>
         <div className={nav == "left" ? "App" : "App_top"} style={{ background: colors[theme].bg1 }}>

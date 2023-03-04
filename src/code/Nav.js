@@ -13,6 +13,7 @@ import { theme_combinations as colors } from '../global_store/theme_combinations
 import { ActionChangeTheme } from '../global_store/only_reducer';
 import black_logo from '../assets/images/black_logo.png'
 import blue_logo from '../assets/images/blue_logo.png'
+import { base_url } from '../config/env'
 
 
 export default function Nav(props) {
@@ -30,6 +31,7 @@ export default function Nav(props) {
         }
     }
 
+
     return (
         <div className={"nav"}>
             <div className={'nav_img_contn'} >
@@ -41,18 +43,21 @@ export default function Nav(props) {
             <CSSTransition in={props.nav == "top"} timeout={1000} classNames="nav_top" unmountOnExit>
                 <div className={'nav_top'} style={{ color: colors[theme].style1 }}>
                     <div className='sign_top'>
-                        {<IoIosArrowDropleftCircle className={'hide'} size={25} color={colors[theme].style1}
-                            onClick={() => { props.setNav(false); }}
-                        />}
-                        <div className='logo'>Logo</div>
+
+                        <img className='nav_logo' src={findImage()} />
                     </div>
                     <div className='top_nav_right'>
                         <div className={'nav_top_menus'}>
+                            {<IoIosArrowDropleftCircle className={'hide'} size={25} color={colors[theme].style1}
+                                onClick={() => { props.setNav(false); }}
+                            />}
                             <div className='nav1_top'>About</div>
                             <div className='nav1_top'>Experience</div>
                             <div className='nav1_top'>Work</div>
                             <div className='nav1_top'>Contact</div>
-                            <div className='nav1_top'>Resume</div>
+                            <div className='nav1_top'><a className='cv_a' href={`${base_url}/dwn`} download="Res" target='_blank'>
+                                Resume
+                            </a></div>
                             <div onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }}>
                                 <FaReact />
                             </div>
@@ -81,7 +86,9 @@ export default function Nav(props) {
                         <MenuItem> Experience</MenuItem>
                         <MenuItem> Work</MenuItem>
                         <MenuItem> Contact</MenuItem>
-                        <MenuItem> Resume</MenuItem>
+                        <MenuItem> <a className='cv_a' href={`${base_url}/dwn`} download="Res" target='_blank'>
+                            Resume
+                        </a></MenuItem>
                     </Menu>
                     <div className='bar_bottom_protion'>
 

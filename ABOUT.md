@@ -5,3 +5,8 @@ portfolio:
     -used react-redux, v>8 for theme handling.
     -  
 
+branch-name-wise explanation :
+    -1.6:
+        this is used to view my portfolio with just download resume feature , and is synced with branch 1.1 of backend repo https://github.com/opvishu2/node1
+
+

@@ -48,6 +48,11 @@
   justify-content: center;
 }
 
+.cv_a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .bar_bottom_protion {
   height: 25vh;
 }
@@ -85,6 +90,14 @@
 .sign_top {
   display: flex;
   align-items: center;
+}
+
+.nav_logo {
+  height: 10vw;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* --------------------------------------TOP-NAV-CSSTRANSITIONS -start*/

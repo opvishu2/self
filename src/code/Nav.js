@@ -32,6 +32,20 @@ export default function Nav(props) {
     }
 
 
+    const download = () => {
+        fetch(`${base_url}/dwn`)
+            .then(response => {
+                response.blob().then(blob => {
+                    let url = window.URL.createObjectURL(blob);
+                    let a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'CvVishalM.pdf';
+                    a.click();
+                });
+                //window.location.href = response.url;
+            });
+    }
+
     return (
         <div className={"nav"}>
             <div className={'nav_img_contn'} >
@@ -55,9 +69,10 @@ export default function Nav(props) {
                             <div className='nav1_top'>Experience</div>
                             <div className='nav1_top'>Work</div>
                             <div className='nav1_top'>Contact</div>
-                            <div className='nav1_top'><a className='cv_a' href={`${base_url}/dwn`} download="Res" target='_blank'>
-                                Resume
-                            </a></div>
+                            <div className='nav1_top'>
+                                <a className='cv_a' onClick={download}>
+                                    Resume
+                                </a></div>
                             <div onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }}>
                                 <FaReact />
                             </div>
@@ -86,7 +101,7 @@ export default function Nav(props) {
                         <MenuItem> Experience</MenuItem>
                         <MenuItem> Work</MenuItem>
                         <MenuItem> Contact</MenuItem>
-                        <MenuItem> <a className='cv_a' href={`${base_url}/dwn`} download="Res" target='_blank'>
+                        <MenuItem> <a className='cv_a' onClick={download}>
                             Resume
                         </a></MenuItem>
                     </Menu>

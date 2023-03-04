@@ -31,18 +31,18 @@ export default function Nav(props) {
         }
     }
 
-    // const download = () => {
-    //     fetch(`${base_url}/dwn`)
-    //         .then(response => {
-    //             response.blob().then(blob => {
-    //                 let url = window.URL.createObjectURL(blob);
-    //                 let a = document.createElement('a');
-    //                 a.href = url;
-    //                 a.download = 'CvVishalM.pdf';
-    //                 a.click();
-    //             });
-    //         });
-    // }
+    const download = () => {
+        fetch(`${base_url}/dwn`)
+            .then(response => {
+                response.blob().then(blob => {
+                    let url = window.URL.createObjectURL(blob);
+                    let a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'CvVishalM.pdf';
+                    a.click();
+                });
+            });
+    }
 
     return (
         <div className={"nav"}>
@@ -67,9 +67,9 @@ export default function Nav(props) {
                             <div className='nav1_top'>Experience</div>
                             <div className='nav1_top'>Work</div>
                             <div className='nav1_top'>Contact</div>
-                            <div className='nav1_top'><a className='cv_a' href={`${base_url}/dwn`} download="Res" target='_blank'>
+                            <div className='nav1_top'><div className='cv_a' onClick={download}>
                                 Resume
-                            </a></div>
+                            </div></div>
                             <div onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }}>
                                 <FaReact />
                             </div>
@@ -98,9 +98,9 @@ export default function Nav(props) {
                         <MenuItem> Experience</MenuItem>
                         <MenuItem> Work</MenuItem>
                         <MenuItem> Contact</MenuItem>
-                        <MenuItem> <a className='cv_a' href={`${base_url}/dwn`} download="Res" target='_blank'>
+                        <MenuItem> <div className='cv_a' onClick={download}>
                             Resume
-                        </a></MenuItem>
+                        </div></MenuItem>
                     </Menu>
                     <div className='bar_bottom_protion'>
 

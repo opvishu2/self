@@ -1,12 +1,12 @@
 
 export const checkBaseURLS = () => {
     const env = process.env.NODE_ENV
-    console.log("env == ", env)
+    console.log("env == ", process.env.NODE_ENV)
 
     if (env == "development") {
         return "http://localhost:5000"
     } else {
-        return "https://i.mvishal-api.link"
+        return "http://api.mvishal.link"
     }
 }
 

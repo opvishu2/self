@@ -25,6 +25,8 @@ export default function LandPage(props) {
     }
 
 
+    console.warn("process.env == ", process.env)
+
     return (<>
         <div className={nav == "left" ? "App" : "App_top"} style={{ background: colors[theme].bg1 }}>
             <Nav top_nav={top_nav} toggleTopNav={toggleTopNav} nav={nav} setNav={setNav} />

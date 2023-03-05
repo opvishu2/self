@@ -23,3 +23,13 @@ branch-name-wise explanation :
             # allow download permissions (some public permisssions too)
 
             # added a file manually and updated necessary persmissions use it in ui directly to backend is needed uptill here.
+
+    1.8:
+        OBJECTIVE=> design corrections:
+            # to use any font family google api , refer doc == https://stackoverflow.com/questions/40769551/how-to-use-google-fonts-in-react-js
+
+            # to find name of cursive fonts use == https://www.logobee.com/logo-design-blog/post/26-best-cursive-google-fonts-for-logo-design
+
+            
+    
+

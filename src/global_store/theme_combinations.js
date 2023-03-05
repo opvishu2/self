@@ -1,12 +1,30 @@
 export const theme_combinations = {
     ng1: {
-        style1: "#61dafb",
-        bg1: "#282c34",
-        style2: "black"
+        bg1: "rgb(13, 25, 28)", // like navy blue 
+        style1: "aquamarine", // like sky color 
+        style2: "black", // black
+        style3: "aquamarine",
+        // style1: "aqua",
+        // style3: "#61dafb",
+        font1: 'Lato, sans-serif',
+        font2: "Redressed, cursive",
+        font3: "Croissant One,cursive",
     },
     dy1: {
         style1: "orange",
         bg1: "#fff",
-        style2: "black"
+        style2: "black",
+        font1: 'Lato, sans-serif',
+        font2: "Redressed, cursive",
+        font3: "Croissant One,cursive",
     },
 }
+
+/* font-family: 'Sofia', cursive; */
+/* font-family: 'Tangerine', cursive; */
+/* font-family: 'Arizonia', cursive; */
+/* font-family: 'Courgette', cursive; */
+/* font-family: 'Lato', sans-serif; */
+/* font-family: 'Pacifico', cursive; */
+/* font-family: 'Redressed', cursive; */
+/* font-family: 'Croissant One', cursive; */

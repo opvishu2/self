@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Nav.css'
 import { BsFillArrowUpRightSquareFill } from "react-icons/bs";
 import { HiBarsArrowUp, HiOutlineBars3CenterLeft, HiOutlineBarsArrowDown } from "react-icons/hi2";
@@ -23,6 +23,7 @@ export default function Nav(props) {
     const { collapseSidebar } = useProSidebar();
     const theme = useSelector((state) => state.AllReducerCombined.themeChangeReducers.active_theme)
     const dispatch = useDispatch()
+    let { bg1, style1, style2, style3, font1, font2, font3 } = colors[theme]
 
     const findImage = () => {
         if (theme == "ng1") {
@@ -31,6 +32,9 @@ export default function Nav(props) {
             return black_logo
         }
     }
+
+
+
 
     // const download = () => {
     //     // fetch(`${base_url}/dwn`)
@@ -45,24 +49,23 @@ export default function Nav(props) {
     //             });
     //         });
     // }
-
     return (
         <div className={"nav"}>
             <div className={'nav_img_contn'} >
-                {!props.nav && <HiOutlineBars3CenterLeft className='nav_btn' size={35} color={colors[theme].style1}
+                {!props.nav && <HiOutlineBars3CenterLeft className='nav_btn' size={35} color={style3}
                     onClick={() => { props.setNav("left") }}
                 />}
 
             </div>
             <CSSTransition in={props.nav == "top"} timeout={1000} classNames="nav_top" unmountOnExit>
-                <div className={'nav_top'} style={{ color: colors[theme].style1 }}>
+                <div className={'nav_top'} style={{ color: style3 }}>
                     <div className='sign_top'>
 
-                        <img className='nav_logo' src={findImage()} />
+                        {/* <img className='nav_logo' src={findImage()} /> */}
                     </div>
-                    <div className='top_nav_right'>
+                    <div className='top_nav_right' style={{ fontFamily: font2 }}>
                         <div className={'nav_top_menus'}>
-                            {<IoIosArrowDropleftCircle className={'hide'} size={25} color={colors[theme].style1}
+                            {<IoIosArrowDropleftCircle className={'hide'} size={25} color={style3}
                                 onClick={() => { props.setNav(false); }}
                             />}
                             <div className='nav1_top'>About</div>
@@ -73,40 +76,40 @@ export default function Nav(props) {
                                 {/* <div className='cv_a' onClick={download}>
                                     Resume
                                 </div> */}
-                                <a className='cv_a' href={cv} target="_blank">Resume</a>
+                                <a className='cv' style={{ borderColor: style3 }} href={cv} target="_blank">Resume</a>
                             </div>
-                            <div onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }}>
-                                <FaReact />
-                            </div>
+                            <FaReact size={20} color={style3} onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }} />
                         </div>
                     </div>
                 </div>
             </CSSTransition >
 
-            {<div className={props.nav == "left" ? 'sidebar' : "sidebar_closed"} style={{ background: colors[theme].style1 }}>
-                <Sidebar className='sidebar_body' style={{ color: colors[theme].style2 }} defaultCollapsed={props.nav != "left"} collapsedWidth={"0px"} transitionDuration={500} >
-                    <div className='bar_upper_portion'>
-                        <div className='side_settings'>
-                            <HiBarsArrowUp className='arrow_up' size={30} color={colors[theme].style2}
-                                onClick={() => { collapseSidebar(); setTimeout(() => { props.setNav("top") }, 501) }}
-                            />
-                            <div onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }}>
-                                <FaReact size={20} />
+            {<div className={props.nav == "left" ? 'sidebar' : "sidebar_closed"} style={{ background: bg1, color: style1, fontFamily: font3, position: props.timeout ? "fixed" : "unset" }}>
+                <Sidebar className='sidebar_body' style={{ border: 0 }} defaultCollapsed={props.nav != "left"} collapsedWidth={"0px"} transitionDuration={500}>
+                    <div style={{ background: bg1 }}>
+                        <div className='bar_upper_portion'>
+                            <div className='side_settings' >
+                                <HiBarsArrowUp className='arrow_up' size={30}
+                                    onClick={() => { collapseSidebar(); setTimeout(() => { props.setNav("top") }, 501) }}
+                                />
+                                <div onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }}>
+                                    <FaReact size={20} />
+                                </div>
                             </div>
-                        </div>
-                        <div className='bar_logo_cont'>
+                            {/* <div className='bar_logo_cont'>
                             <img className='bar_logo' src={findImage()} />
+                        </div> */}
                         </div>
-                    </div>
-                    <Menu className='bar_middle_portion'>
-                        <MenuItem> About</MenuItem>
-                        <MenuItem> Experience</MenuItem>
-                        <MenuItem> Work</MenuItem>
-                        <MenuItem> Contact</MenuItem>
-                        <MenuItem> <a className='cv_a' href={cv} target="_blank">Resume</a></MenuItem>
-                    </Menu>
-                    <div className='bar_bottom_protion'>
+                        <Menu className='bar_middle_portion' >
+                            <MenuItem className='side_item' > About</MenuItem>
+                            <MenuItem className='side_item'> Experience</MenuItem>
+                            <MenuItem className='side_item'> Work</MenuItem>
+                            <MenuItem className='side_item'> Contact</MenuItem>
+                            <MenuItem className='side_cv'> <a className='cv_a' href={cv} target="_blank">Resume</a></MenuItem>
+                        </Menu>
+                        <div className='bar_bottom_protion' >
 
+                        </div>
                     </div>
                 </Sidebar>
             </div>}

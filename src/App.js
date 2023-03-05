@@ -8,7 +8,7 @@ function App() {
     <Provider store={global_store}>
       <ProSidebarProvider>
         <Routss />
-      </ProSidebarProvider>;
+      </ProSidebarProvider>
     </Provider>)
 }
 

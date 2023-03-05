@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from 'react'
 import './Nav.css'
 import { BsFillArrowUpRightSquareFill } from "react-icons/bs";
@@ -49,10 +50,11 @@ export default function Nav(props) {
     //             });
     //         });
     // }
+    console.log("Y:", props.y_scroll_check)
     return (
         <div className={"nav"}>
             <div className={'nav_img_contn'} >
-                {!props.nav && <HiOutlineBars3CenterLeft className='nav_btn' size={35} color={style3}
+                {(!props.nav && props.y_scroll_check) && <HiOutlineBars3CenterLeft className='nav_btn' size={35} color={style3}
                     onClick={() => { props.setNav("left") }}
                 />}
 
@@ -84,9 +86,9 @@ export default function Nav(props) {
                 </div>
             </CSSTransition >
 
-            {<div className={props.nav == "left" ? 'sidebar' : "sidebar_closed"} style={{ background: bg1, color: style1, fontFamily: font3, position: props.timeout ? "fixed" : "unset" }}>
+            {<div className={props.nav == "left" ? 'sidebar' : "sidebar_closed"} style={{ background: bg1, color: style1, fontFamily: font3, }}>
                 <Sidebar className='sidebar_body' style={{ border: 0 }} defaultCollapsed={props.nav != "left"} collapsedWidth={"0px"} transitionDuration={500}>
-                    <div style={{ background: bg1 }}>
+                    <div className='sidebar_main' style={{ background: bg1 }}>
                         <div className='bar_upper_portion'>
                             <div className='side_settings' >
                                 <HiBarsArrowUp className='arrow_up' size={30}
@@ -100,13 +102,22 @@ export default function Nav(props) {
                             <img className='bar_logo' src={findImage()} />
                         </div> */}
                         </div>
-                        <Menu className='bar_middle_portion' >
-                            <MenuItem className='side_item' > About</MenuItem>
-                            <MenuItem className='side_item'> Experience</MenuItem>
-                            <MenuItem className='side_item'> Work</MenuItem>
-                            <MenuItem className='side_item'> Contact</MenuItem>
-                            <MenuItem className='side_cv'> <a className='cv_a' href={cv} target="_blank">Resume</a></MenuItem>
-                        </Menu>
+                        <div className='bar_middle_portion'
+                        // menuItemStyles={{ button: { '&:hover': { backgroundColor: style3, color: bg1, borderRadius: "8px" }, } }}
+                        >
+                            {["About", "Experience", "Work", "Contact"].map((el, id) =>
+                                <div key={id} className='side_item'
+                                    onClick={() => { props.setSideMenu(id) }}
+                                    style={{ background: props.active_side_menu == id ? style1 : bg1, color: props.active_side_menu == id ? bg1 : style1, }}
+                                > {el}
+                                </div>)}
+                            <div key={4} active={true} className='side_item'>
+                                <a className='cv_side' href={cv} target="_blank"
+                                    onClick={() => { props.setSideMenu(4) }}
+                                    style={{ background: props.active_side_menu == 4 ? style1 : bg1, color: props.active_side_menu == 4 ? bg1 : style1, borderRadius: props.active_side_menu == 4 ? "8px" : 0 }}
+                                >Resume</a>
+                            </div>
+                        </div>
                         <div className='bar_bottom_protion' >
 
                         </div>

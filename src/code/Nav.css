@@ -19,7 +19,10 @@
 
 .sidebar_body {
   display: flex;
-  max-width: 15vw;
+}
+
+.sidebar_main {
+  width: 15vw;
 }
 
 .bar_upper_portion {
@@ -41,6 +44,7 @@
   border: 2px solid;
   padding: 5px 12px 5px 12px;
   border-radius: 5px;
+  width: "50%";
 }
 
 .bar_logo_cont {
@@ -57,10 +61,43 @@
 }
 
 .bar_middle_portion {
-  height: 50vh;
+  height: 45vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2vw;
+}
+
+.side_item {
+  cursor: pointer;
+  background-color: inherit;
+  /* transition: background-color 0.9s; */
+  transition: background-color 0.9s, font-size 0.5s, color 0.5s;
+  transition-delay: 0.15s;
+  border-radius: 8px;
+  min-width: 70%;
+  padding: 5px 0 5px 0;
+}
+
+.side_item:hover {
+  background-color: aquamarine;
+  color: rgb(13, 25, 28);
+  font-size: 1.3vw;
+}
+
+/* .side_cv_cont {
+  display: flex;
+  align-items: center;
   justify-content: center;
+} */
+
+.cv_side {
+  text-decoration: none;
+  width: 100%;
+  /* color: inherit; */
+  padding: 5px 2px 5px 2px;
 }
 
 .cv_a {
@@ -89,7 +126,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1vh;
+  position: fixed;
+  width: 100vw;
+  top: 1vh;
   height: 5vh;
   padding: 0 20px 0 20px;
 }

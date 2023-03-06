@@ -30,6 +30,12 @@ branch-name-wise explanation :
 
             # to find name of cursive fonts use == https://www.logobee.com/logo-design-blog/post/26-best-cursive-google-fonts-for-logo-design
 
+            # vaious design changes for button hovers
+
+            # used useRef for closing side nav once scrolled down.
+
             
+
+
     
 

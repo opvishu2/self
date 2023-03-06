@@ -70,17 +70,22 @@ export default function Nav(props) {
                             {<IoIosArrowDropleftCircle className={'hide'} size={25} color={style3}
                                 onClick={() => { props.setNav(false); }}
                             />}
-                            <div className='nav1_top'>About</div>
-                            <div className='nav1_top'>Experience</div>
-                            <div className='nav1_top'>Work</div>
-                            <div className='nav1_top'>Contact</div>
-                            <div className='nav1_top'>
+                            {["About", "Experience", "Work", "Contact"].map((el, id) =>
+                                <div key={id} className='nav1_top'
+                                    onClick={() => { props.setSideMenu(id) }}
+                                    style={{ background: props.active_side_menu == id ? style1 : "", color: props.active_side_menu == id ? bg1 : "", }}
+                                >{el}</div>
+                            )}
+                            <div className='nav1_top'
+                                onClick={() => { props.setSideMenu(4) }}
+                                style={{ border: `2px solid ${style3}`, background: props.active_side_menu == 4 ? style1 : "", color: props.active_side_menu == 4 ? bg1 : "", }}
+                            >
                                 {/* <div className='cv_a' onClick={download}>
                                     Resume
                                 </div> */}
-                                <a className='cv' style={{ borderColor: style3 }} href={cv} target="_blank">Resume</a>
+                                <a className='cv' href={cv} target="_blank">Resume</a>
                             </div>
-                            <FaReact size={20} color={style3} onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }} />
+                            <FaReact size={25} color={style3} onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }} />
                         </div>
                     </div>
                 </div>
@@ -108,13 +113,20 @@ export default function Nav(props) {
                             {["About", "Experience", "Work", "Contact"].map((el, id) =>
                                 <div key={id} className='side_item'
                                     onClick={() => { props.setSideMenu(id) }}
-                                    style={{ background: props.active_side_menu == id ? style1 : bg1, color: props.active_side_menu == id ? bg1 : style1, }}
+                                    style={{
+                                        border: props.active_side_menu == id ? `2px solid ${style1}` : "",
+                                        //  color: props.active_side_menu == id ? bg1 : "", 
+                                    }}
                                 > {el}
                                 </div>)}
-                            <div key={4} active={true} className='side_item'>
+                            <div key={4} active={true} className='side_item'
+                                style={{
+                                    background: props.active_side_menu == 4 ? style1 : "",
+                                    // color: props.active_side_menu == 4 ? bg1 : "", 
+                                }}
+                            >
                                 <a className='cv_side' href={cv} target="_blank"
                                     onClick={() => { props.setSideMenu(4) }}
-                                    style={{ background: props.active_side_menu == 4 ? style1 : bg1, color: props.active_side_menu == 4 ? bg1 : style1, borderRadius: props.active_side_menu == 4 ? "8px" : 0 }}
                                 >Resume</a>
                             </div>
                         </div>

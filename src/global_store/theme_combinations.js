@@ -11,8 +11,10 @@ export const theme_combinations = {
         font3: "Croissant One,cursive",
     },
     dy1: {
-        style1: "orange",
-        bg1: "#fff",
+        // style1: "orange",
+        style1: "rgb(255, 79, 4)",
+        bg1: "rgb(249, 244, 244)",
+        // bg1:"#fff",
         style2: "black",
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",

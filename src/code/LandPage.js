@@ -17,7 +17,7 @@ export default function LandPage(props) {
     const [top_nav, toggleTopNav] = useState(false)
     // const [timeout, setTime] = useState(false)
     // const [content, setContent] = useState(true)
-    const [nav, setNav] = useState("left")
+    const [nav, setNav] = useState("top")
     const [active_side_menu, setSideMenu] = useState(NaN)
     const YscrollRef = useRef(undefined)
     const [y_scroll, setYScroll] = useState(0)

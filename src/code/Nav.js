@@ -111,21 +111,24 @@ export default function Nav(props) {
                                 onClick={() => { props.setNav(false); }}
                             />}
                             <FaReact className='r_icon_phone' size={28} color={style1} onClick={handleThemeChange} />
+                            {window.innerWidth < 550 && <div className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
+                                onClick={() => { props.setSideMenu(4) }}
+                                style={{ border: handleTopNavButtonsStyle(4).brdr, background: handleTopNavButtonsStyle(4).bg, color: handleTopNavButtonsStyle(4).clr, }}
+                            >
+                                <a className='cv' href={cv} target="_blank">Resume</a>
+                            </div>}
                             {["About", "Experience", "Work", "Contact"].map((el, id) =>
                                 <div key={id} className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
                                     onClick={() => { props.setSideMenu(id) }}
                                     style={{ background: handleTopNavButtonsStyle(id).bg, color: handleTopNavButtonsStyle(id).clr }}
                                 >{el}</div>
                             )}
-                            <div className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
+                            {window.innerWidth >= 550 && <div className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
                                 onClick={() => { props.setSideMenu(4) }}
                                 style={{ border: handleTopNavButtonsStyle(4).brdr, background: handleTopNavButtonsStyle(4).bg, color: handleTopNavButtonsStyle(4).clr, }}
                             >
-                                {/* <div className='cv_a' onClick={download}>
-                                    Resume
-                                </div> */}
                                 <a className='cv' href={cv} target="_blank">Resume</a>
-                            </div>
+                            </div>}
                             <FaReact className='r_icon' size={28} color={style1} onClick={handleThemeChange} />
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 export const theme_combinations = {
-    ng1: {
+    thm1: {
         bg1: "rgb(13, 25, 28)", // like navy blue 
         style1: "aquamarine", // like sky color #7FFFD4
         style2: "black", // black
@@ -10,8 +10,7 @@ export const theme_combinations = {
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",
     },
-    dy1: {
-        // style1: "orange",
+    thm2: {
         style1: "rgb(255, 79, 4)",
         // bg1: "whitesmoke",
         bg1: "antiquewhite",
@@ -20,6 +19,15 @@ export const theme_combinations = {
         style3: "rgb(242, 117, 34)",
         // style3: "rgb(245, 125, 40)",
         // style3: "rgb(238, 134, 60)",
+        font1: 'Lato, sans-serif',
+        font2: "Redressed, cursive",
+        font3: "Croissant One,cursive",
+    },
+    thm3: {
+        bg1: "black", // like navy blue 
+        style1: "rgb(255, 0, 166)",
+        style2: "black", // black
+        style3: "rgb(255, 0, 166)",
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",

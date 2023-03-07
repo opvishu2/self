@@ -25,7 +25,7 @@ export default function LandPage(props) {
 
 
     const findImage = () => {
-        if (theme == "ng1") {
+        if (theme == "thm1") {
             return self_ng1
         } else {
             return self_dy1

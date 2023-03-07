@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const themeChange = createSlice({
     name: 'theme_change',
     initialState: {
-        active_theme: "ng1"
+        active_theme: "thm1"
     },
     reducers: {
         ActionChangeTheme: (state, incoming_changes) => {

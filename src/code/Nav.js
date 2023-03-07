@@ -27,7 +27,7 @@ export default function Nav(props) {
     let { bg1, style1, style2, style3, font1, font2, font3 } = colors[theme]
 
     const findImage = () => {
-        if (theme == "ng1") {
+        if (theme == "thm1") {
             return logo1
         } else {
             return logo2
@@ -66,26 +66,26 @@ export default function Nav(props) {
                     </div>
                     <div className='top_nav_right' style={{ fontFamily: font2 }}>
                         <div className={'nav_top_menus'}>
-                            {<IoIosArrowDropleftCircle className={'hide'} size={25} color={theme == "ng1" ? style3 : style1}
+                            {<IoIosArrowDropleftCircle className={'hide'} size={25} color={theme == "thm1" ? style3 : style1}
                                 onClick={() => { props.setNav(false); }}
                             />}
-                            <FaReact className='r_icon_phone' size={28} color={theme == "ng1" ? style3 : style1} onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }} />
+                            <FaReact className='r_icon_phone' size={28} color={theme == "thm1" ? style3 : style1} onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "thm1" ? "thm2" : "thm1" })) }} />
                             {["About", "Experience", "Work", "Contact"].map((el, id) =>
-                                <div key={id} className={theme == "ng1" ? 'nav1_top' : "nav1_top2"}
+                                <div key={id} className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
                                     onClick={() => { props.setSideMenu(id) }}
-                                    style={{ background: props.active_side_menu == id ? theme == "ng1" ? style1 : style3 : "", color: props.active_side_menu == id ? bg1 : theme == "dy1" ? style1 : "", }}
+                                    style={{ background: props.active_side_menu == id ? theme == "thm1" ? style1 : style3 : "", color: props.active_side_menu == id ? bg1 : theme == "thm2" ? style1 : "", }}
                                 >{el}</div>
                             )}
-                            <div className={theme == "ng1" ? 'nav1_top' : "nav1_top2"}
+                            <div className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
                                 onClick={() => { props.setSideMenu(4) }}
-                                style={{ border: `${theme == "ng1" ? "2px" : "1.5px"} solid ${style3}`, background: props.active_side_menu == 4 ? theme == "ng1" ? style1 : style3 : "", color: props.active_side_menu == 4 ? bg1 : theme == "dy1" ? style1 : "", }}
+                                style={{ border: `${theme == "thm1" ? "2px" : "1.5px"} solid ${style3}`, background: props.active_side_menu == 4 ? theme == "thm1" ? style1 : style3 : "", color: props.active_side_menu == 4 ? bg1 : theme == "thm2" ? style1 : "", }}
                             >
                                 {/* <div className='cv_a' onClick={download}>
                                     Resume
                                 </div> */}
                                 <a className='cv' href={cv} target="_blank">Resume</a>
                             </div>
-                            <FaReact className='r_icon' size={28} color={theme == "ng1" ? style3 : style1} onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }} />
+                            <FaReact className='r_icon' size={28} color={theme == "thm1" ? style3 : style1} onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "thm1" ? "thm2" : "thm1" })) }} />
                         </div>
                     </div>
                 </div>
@@ -99,8 +99,8 @@ export default function Nav(props) {
                                 <HiBarsArrowUp color={style3} className='arrow_up' size={30}
                                     onClick={() => { collapseSidebar(); setTimeout(() => { props.setNav("top") }, 501) }}
                                 />
-                                <div onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "ng1" ? "dy1" : "ng1" })) }}>
-                                    <FaReact color={theme == "ng1" ? style3 : style1} size={20} />
+                                <div onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "thm1" ? "thm2" : "thm1" })) }}>
+                                    <FaReact color={theme == "thm1" ? style3 : style1} size={20} />
                                 </div>
                             </div>
                             <div className='bar_logo_cont'>
@@ -111,7 +111,7 @@ export default function Nav(props) {
                         // menuItemStyles={{ button: { '&:hover': { backgroundColor: style3, color: bg1, borderRadius: "8px" }, } }}
                         >
                             {["About", "Experience", "Work", "Contact"].map((el, id) =>
-                                <div key={id} className={theme == "ng1" ? 'side_item' : "side_item2"}
+                                <div key={id} className={theme == "thm1" ? 'side_item' : "side_item2"}
                                     onClick={() => { props.setSideMenu(id) }}
                                     style={{
                                         border: props.active_side_menu == id ? `2px solid ${style1}` : "",
@@ -119,7 +119,7 @@ export default function Nav(props) {
                                     }}
                                 > {el}
                                 </div>)}
-                            <div key={4} active={true} className={theme == "ng1" ? 'side_item' : "side_item2"}
+                            <div key={4} active={true} className={theme == "thm1" ? 'side_item' : "side_item2"}
                                 style={{
                                     border: props.active_side_menu == 4 ? `2px solid ${style1}` : "",
                                     // color: props.active_side_menu == 4 ? bg1 : "", 

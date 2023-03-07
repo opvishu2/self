@@ -6,6 +6,7 @@ export const theme_combinations = {
         style1: "aquamarine", // like sky color #7FFFD4
         style2: "black", // black
         style3: "aquamarine",
+        // style4: "aquamarine",
         // style1: "aqua",
         // style3: "#61dafb",
         font1: 'Lato, sans-serif',
@@ -13,7 +14,7 @@ export const theme_combinations = {
         font3: "Croissant One,cursive",
     },
     thm1_day: {
-        bg1: "white",
+        bg1: "whitesmoke",
         style1: "rgb(6, 110, 105)",
         style2: "black",
         style3: "rgb(6, 110, 105)",
@@ -22,18 +23,23 @@ export const theme_combinations = {
         font3: "Croissant One,cursive",
     },
     thm2: {
-        style1: "rgb(255, 79, 4)",
-        // bg1: "whitesmoke",
-        bg1: "antiquewhite",
+        bg1: "whitesmoke",
+        bg_day: "antiquewhite",
+        bg_night: "black",
+        // bg1: "antiquewhite",
         // bg1:"#fff",
+        style1: "rgb(255, 79, 4)",
         style2: "black",
         style3: "rgb(242, 117, 34)",
+        // style4: "rgb(242, 117, 34)",
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",
     },
     thm3: {
         bg1: "black",
+        bg_day: "antiquewhite",
+        bg_night: "black",
         style1: "rgb(255, 0, 166)",
         style2: "black",
         style3: "rgb(255, 0, 166)",
@@ -43,6 +49,8 @@ export const theme_combinations = {
     },
     thm4: {
         bg1: "white",
+        bg_day: "antiquewhite",
+        bg_night: "black",
         style1: "rgb(5, 5, 255)",
         style2: "black",
         style3: "rgb(5, 5, 255)",

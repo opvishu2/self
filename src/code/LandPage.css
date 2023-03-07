@@ -3,15 +3,12 @@ body {}
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
-  /* Remove scrollbar space */
   background: transparent;
-  /* Optional: just make scrollbar invisible */
 }
 
 
 .App::-webkit-scrollbar {
   display: none;
-  /* Safari and Chrome */
 }
 
 .App {
@@ -19,12 +16,6 @@ body {}
   overflow-y: auto;
   text-align: center;
   display: flex;
-  /* background-color: rgb(12, 18, 19); */
-  /* background-color: rgb(255, 79, 4); */
-  /* background-color: rgb(249, 244, 244); */
-  /* background-color: antiquewhite; */
-  /* background-color: rgb(242, 117, 34); */
-  /* background-color: rgb(5, 5, 255); */
 }
 
 .App_top {
@@ -32,14 +23,9 @@ body {}
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  /* background-color: rgb(13, 25, 28); */
-  /* background-color: #282c34; */
-  /* background-color: rgb(12, 18, 19); */
-  /* background-color: rgb(11, 16, 16); */
 }
 
 .content {
-  /* height: 100%; */
   min-height: 110vh;
   width: 90vw;
   display: flex;
@@ -52,17 +38,12 @@ body {}
   display: flex;
   justify-content: center;
   align-items: center;
-  /* color: #61dafb; */
-  /* color: rgb(0, 255, 247); */
-  /* color: aquamarine; */
 }
 
 .right_c {
-  /* width: 30%; */
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* border: 1px solid red; */
 }
 
 .App-logo {
@@ -85,9 +66,7 @@ body {}
 }
 
 .content-enter-active {
-  /* opacity: 1; */
   transform: translateY(0);
-  /* transition: opacity 300ms, transform 300ms; */
   transition: transform 300ms;
 }
 

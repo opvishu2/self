@@ -8,27 +8,30 @@ import Nav from './Nav';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux'
 import { theme_combinations as colors } from '../global_store/theme_combinations';
-import { ActionChangeTheme } from '../global_store/only_reducer';
 
+let selff_ng1 = self_ng1
+let selff_dy1 = self_dy1
 
 export default function LandPage(props) {
-    const theme = useSelector((state) => state.AllReducerCombined.themeChangeReducers.active_theme)
     const dispatch = useDispatch()
     const [top_nav, toggleTopNav] = useState(false)
     // const [timeout, setTime] = useState(false)
     // const [content, setContent] = useState(true)
     const [nav, setNav] = useState("left")
     const [active_side_menu, setSideMenu] = useState(NaN)
-    let { bg1, style1, style2, style3, font1, font2, font3 } = colors[theme]
     const YscrollRef = useRef(undefined)
     const [y_scroll, setYScroll] = useState(0)
 
+    const theme = useSelector((state) => state.AllReducerCombined.themeChangeReducers.active_theme)
+    const n_mode = useSelector((state) => state.AllReducerCombined.themeChangeReducers.night_mode)
+    let { bg_day, bg_night, style1, style2, style3, font1, font2, font3 } = colors[theme]
+    let BG = n_mode ? bg_night : bg_day
 
-    const findImage = () => {
+    const handleImage = () => {
         if (theme == "thm1") {
-            return self_ng1
+            return selff_ng1
         } else {
-            return self_dy1
+            return selff_dy1
         }
     }
 
@@ -53,7 +56,7 @@ export default function LandPage(props) {
 
     console.warn("process.env == ", process.env)
     return (<>
-        <div className={nav == "left" ? "App" : "App_top"} style={{ background: bg1, fontFamily: font1 }} ref={YscrollRef} onScroll={onScroll}>
+        <div className={nav == "left" ? "App" : "App_top"} style={{ background: bg_night, fontFamily: font1 }} ref={YscrollRef} onScroll={onScroll}>
             {/* <div className={nav == "left" ? "App" : "App_top"}> */}
             <Nav
                 active_side_menu={active_side_menu}
@@ -67,7 +70,7 @@ export default function LandPage(props) {
                 <div className='content'>
                     <div className='left_c' style={{ color: style1 }}><h1 className='typed' style={{ fontFamily: font3 }}>Hi, Vishal M. here!</h1></div>
                     {/* <div className='left_c' ><h1 className='typed'>Hi, Vishal M. here!</h1></div> */}
-                    <div className='right_c'><img className="App-logo" alt="logo" src={findImage()}></img></div>
+                    <div className='right_c'><img className="App-logo" alt="logo" src={handleImage()}></img></div>
                 </div>
             </CSSTransition>
             {nav != "top" &&
@@ -75,7 +78,7 @@ export default function LandPage(props) {
                     {/* <div className='content' style={{ opacity: content ? 1 : 0 }}> */}
                     <div className='left_c' style={{ color: style1 }}><h1 className='typed' style={{ fontFamily: font3 }}>Hi, Vishal M. here!</h1></div>
                     {/* <div className='left_c'><h1 className='typed'>Hi, Vishal M. here!</h1></div> */}
-                    <div className='right_c'><img className="App-logo" alt="logo" src={findImage()}></img></div>
+                    <div className='right_c'><img className="App-logo" alt="logo" src={handleImage()}></img></div>
                 </div>
 
             }

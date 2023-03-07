@@ -1,4 +1,4 @@
-import themeChangeReducers from './only_reducer'
+import themeChangeReducers from './theme_reducer'
 import { combineReducers } from 'redux'
 
 

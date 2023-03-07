@@ -34,7 +34,12 @@ branch-name-wise explanation :
 
             # used useRef for closing side nav once scrolled down.
 
-            
+            #(INCLUDES 
+                useSelector,react-transition-group,useDispatch,scrollTop,react-icons,react-pro-sidebar,window.innerWidth,dppx i.e. device pixel ratio,window,addEventListener,
+
+            )
+
+
 
 
     

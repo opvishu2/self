@@ -1,6 +1,6 @@
 
 
-import React, { useEffect, useRef, useState, } from 'react'
+import React, { useRef, useState, } from 'react'
 import './LandPage.css';
 import self_ng1 from '../assets/images/self_ng1.png'
 import self_dy1 from '../assets/images/self_dy1.png'
@@ -8,6 +8,9 @@ import Nav from './Nav';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux'
 import { theme_combinations as colors } from '../global_store/theme_combinations';
+import TestClass from './TestClass';
+import TestFunctional from './testFunctional';
+
 
 let selff_ng1 = self_ng1
 let selff_dy1 = self_dy1
@@ -18,8 +21,10 @@ export default function LandPage(props) {
     // const [timeout, setTime] = useState(false)
     // const [content, setContent] = useState(true)
     const [nav, setNav] = useState("top")
+    const [setting_modal, setSettingModal] = useState(true)
     const [active_side_menu, setSideMenu] = useState(NaN)
     const YscrollRef = useRef(undefined)
+    const settingRef = useRef(null)
     const [y_scroll, setYScroll] = useState(0)
 
     const theme = useSelector((state) => state.AllReducerCombined.themeChangeReducers.active_theme)
@@ -39,9 +44,6 @@ export default function LandPage(props) {
     const onScroll = () => {
         const scrollY = window.scrollY //Don't get confused by what's scrolling - It's not the window
         const scrollTop = YscrollRef.current.scrollTop
-        // console.log("REFF.curent.scrollTop : ", YscrollRef.current.scrollTop)
-        // console.log(`onScroll, window.scrollY: ${scrollY} myRef.scrollTop: ${scrollTop}`)
-        // setYScroll(scrollTop)
         if (scrollTop > 40) {
             if (nav != "top") {
                 setYScroll(scrollTop)
@@ -54,10 +56,17 @@ export default function LandPage(props) {
     }
 
 
+    const handleSetting = () => {
+        setSettingModal(true)
+        // handleThemeChange()
+    }
+
+
     console.warn("process.env == ", process.env)
     return (<>
+        {/* <TestFunctional /> */}
+        {/* <TestClass /> */}
         <div className={nav == "left" ? "App" : "App_top"} style={{ background: bg_night, fontFamily: font1 }} ref={YscrollRef} onScroll={onScroll}>
-            {/* <div className={nav == "left" ? "App" : "App_top"}> */}
             <Nav
                 active_side_menu={active_side_menu}
                 setSideMenu={setSideMenu}
@@ -65,6 +74,7 @@ export default function LandPage(props) {
                 top_nav={top_nav} toggleTopNav={toggleTopNav}
                 nav={nav}
                 setNav={setNav}
+                handleSetting={handleSetting}
             />
             <CSSTransition in={nav == "top"} timeout={1000} classNames="content" unmountOnExit onExit={() => toggleTopNav(true)} >
                 <div className='content'>
@@ -79,9 +89,21 @@ export default function LandPage(props) {
                     <div className='left_c' style={{ color: style1 }}><h1 className='typed' style={{ fontFamily: font3 }}>Hi, Vishal M. here!</h1></div>
                     {/* <div className='left_c'><h1 className='typed'>Hi, Vishal M. here!</h1></div> */}
                     <div className='right_c'><img className="App-logo" alt="logo" src={handleImage()}></img></div>
-                </div>
+                </div>}
 
-            }
+            {/* <Modal
+                isOpen={setting_modal}
+                ariaHideApp={false}
+                onAfterOpen={""}
+                onRequestClose={setSettingModal(false)}
+                style={{ content: { maxHeight: '70%', textAlign: 'center', position: "absolute" } }}
+                contentLabel="Example Modal"
+            // ref={settingRef}
+            >
+                <div>
+                    fhkefhs
+                </div>
+            </Modal > */}
         </div>
     </>
     )

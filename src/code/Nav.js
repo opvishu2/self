@@ -1,11 +1,12 @@
 
 
-import React, { useEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import './Nav.css'
 import { BsFillArrowUpRightSquareFill } from "react-icons/bs";
 import { HiBarsArrowUp, HiOutlineBars3CenterLeft, HiOutlineBarsArrowDown } from "react-icons/hi2";
 import { BiHide } from "react-icons/bi";
 import { FaReact } from "react-icons/fa";
+import { RiFileDownloadFill } from "react-icons/ri"
 import { CSSTransition, SwitchTransition, Transition, TransitionGroup } from 'react-transition-group';
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
 import { IoIosArrowDropleftCircle } from "react-icons/io"
@@ -15,17 +16,19 @@ import { ActionChangeTheme, ActionChangeDayNight } from '../global_store/theme_r
 import logo_thm_2 from '../assets/images/logo_thm_2.png'
 import logo_thm1_dy from '../assets/images/logo_thm1_dy.png'
 import { base_url } from '../config/env'
-
+import { useMediaQuery } from 'react-responsive';
 
 let logoo_thm_2 = logo_thm_2
 let logoo_thm1_dy = logo_thm1_dy
+
 
 export default function Nav(props) {
     const cv = 'https://gurf-vi-s3-bucket1.s3.ap-south-1.amazonaws.com/cv/CvVishalM.pdf'
 
     const { collapseSidebar } = useProSidebar();
     const dispatch = useDispatch()
-
+    const [is_mobile1, setIsMobile] = useState(false)
+    const is_mobile2 = useMediaQuery({ query: `(max-width: 300px)` });
 
 
 
@@ -50,11 +53,21 @@ export default function Nav(props) {
     }
 
 
+    const decideClassNames = (className) => {
+        let final_name = ""
+
+        if (className == "nav1_top") {
+            final_name = theme == "thm1" ? 'nav1_top' : "nav1_top2"
+        }
+
+        return final_name
+    }
 
 
     const handleThemeChange = () => {
         dispatch(ActionChangeTheme({ active_theme: theme == "thm1" ? "thm2" : "thm1" }))
     }
+
 
     const handleDayNight = () => {
         dispatch(ActionChangeDayNight({ n_mode: !n_mode }))
@@ -66,6 +79,20 @@ export default function Nav(props) {
             return logoo_thm1_dy
         } else {
             return logoo_thm_2
+        }
+    }
+
+
+    useLayoutEffect(() => {
+        window.addEventListener("resize", handleResolutionChanges) //activating the listner from very begginging
+    })
+
+
+    const handleResolutionChanges = () => {
+        if (window.innerWidth < 550) {
+            setIsMobile(true)
+        } else {
+            setIsMobile(false)
         }
     }
 
@@ -83,53 +110,51 @@ export default function Nav(props) {
     //             });
     //         });
     // }
-    console.log("window.innerWidt:", window.innerWidth, "\nwindow.innerHeight", window.innerHeight)
+
+
+    console.log("re-rendering ,window.innerWidt:", is_mobile1)
     return (
         <div className={"nav"}>
             {/* <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }} onClick={handleDayNight}>day</div>
             <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }} onClick={handleDayNight}>night</div>
             <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }}>1</div>
             <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }}>2</div>
-            <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }}>3</div>
-            <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }}>4</div> */}
+            <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }}>3</div> */}
+            {/* <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }} onClick={() => { setIsMobile(false) }} >4</div> */}
             <div className={'nav_img_contn'} >
-                {(!props.nav && props.y_scroll_check) && <HiOutlineBars3CenterLeft className='nav_btn' size={35} color={style3}
+                {(!props.nav && props.y_scroll_check) && <HiOutlineBars3CenterLeft className='nav_btn' size={"2.5vw"} color={style3}
                     onClick={() => { props.setNav("left") }}
                 />}
 
             </div>
 
             <CSSTransition in={props.nav == "top"} timeout={1000} classNames="nav_top" unmountOnExit>
-
                 <div className={'nav_top'} style={{ color: style3 }}>
-                    <div className='sign_top'>
+                    {!is_mobile2 && <div className='sign_top'>
                         <img className='nav_logo' src={handleImage()} />
-                    </div>
+                    </div>}
                     <div className='top_nav_right' style={{ fontFamily: font2 }}>
                         <div className={'nav_top_menus'}>
-                            {<IoIosArrowDropleftCircle className={'hide'} size={25} color={theme == "thm1" ? style3 : style1}
+                            {!is_mobile1 && <IoIosArrowDropleftCircle className={'hide'} size={"2vw"} color={theme == "thm1" ? style3 : style1}
                                 onClick={() => { props.setNav(false); }}
                             />}
-                            <FaReact className='r_icon_phone' size={28} color={style1} onClick={handleThemeChange} />
-                            {window.innerWidth < 550 && <div className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
-                                onClick={() => { props.setSideMenu(4) }}
-                                style={{ border: handleTopNavButtonsStyle(4).brdr, background: handleTopNavButtonsStyle(4).bg, color: handleTopNavButtonsStyle(4).clr, }}
-                            >
-                                <a className='cv' href={cv} target="_blank">Resume</a>
-                            </div>}
+                            {is_mobile1 &&
+                                <a className='cv' href={cv} target="_blank"><RiFileDownloadFill size={"6vw"} /></a>
+                            }
+                            {is_mobile1 && <FaReact className='r_icon' size={"6vw"} color={style1} onClick={props.handleSetting} />}
                             {["About", "Experience", "Work", "Contact"].map((el, id) =>
-                                <div key={id} className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
+                                <div key={id} className={decideClassNames("nav1_top")}
                                     onClick={() => { props.setSideMenu(id) }}
                                     style={{ background: handleTopNavButtonsStyle(id).bg, color: handleTopNavButtonsStyle(id).clr }}
                                 >{el}</div>
                             )}
-                            {window.innerWidth >= 550 && <div className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
+                            {!is_mobile1 && <div className={decideClassNames("nav1_top")}
                                 onClick={() => { props.setSideMenu(4) }}
                                 style={{ border: handleTopNavButtonsStyle(4).brdr, background: handleTopNavButtonsStyle(4).bg, color: handleTopNavButtonsStyle(4).clr, }}
                             >
                                 <a className='cv' href={cv} target="_blank">Resume</a>
                             </div>}
-                            <FaReact className='r_icon' size={28} color={style1} onClick={handleThemeChange} />
+                            {!is_mobile1 && <FaReact className='r_icon' size={"3vw"} color={style1} onClick={props.handleSetting} />}
                         </div>
                     </div>
                 </div>
@@ -175,11 +200,11 @@ export default function Nav(props) {
                             </div>
                         </div>
                         <div className='bar_bottom_protion' >
-
                         </div>
                     </div>
                 </Sidebar>
             </div>}
+
         </div>
     )
 }

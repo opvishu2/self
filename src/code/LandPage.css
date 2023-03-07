@@ -16,6 +16,7 @@ body {}
   overflow-y: auto;
   text-align: center;
   display: flex;
+  min-width: 250px;
 }
 
 .App_top {
@@ -23,6 +24,7 @@ body {}
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  min-width: 250px;
 }
 
 .content {
@@ -52,7 +54,7 @@ body {}
 
 .typed {
   overflow: hidden;
-  font-size: 38px;
+  font-size: 3vw;
   white-space: nowrap;
   border-right: 2px solid;
   width: 0;

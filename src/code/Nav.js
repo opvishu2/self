@@ -83,7 +83,7 @@ export default function Nav(props) {
     //             });
     //         });
     // }
-    console.log("Y:", useSelector((state) => state.AllReducerCombined.themeChangeReducers))
+    console.log("window.innerWidt:", window.innerWidth, "\nwindow.innerHeight", window.innerHeight)
     return (
         <div className={"nav"}>
             {/* <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }} onClick={handleDayNight}>day</div>

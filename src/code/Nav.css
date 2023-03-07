@@ -250,13 +250,13 @@
 
 /* --------------------------------------TOP-NAV-CSSTRANSITIONS -ends*/
 
-@media (min-width: 450px) {
+@media (min-width: 550px) and (width:550px) {
   /* .r_icon_phone {
     display: none;
   } */
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
   .nav_logo {
     top: 1.5vh;
     right: 2vw;

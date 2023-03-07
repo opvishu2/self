@@ -49,15 +49,16 @@
 
 .bar_logo_cont {
 
-  height: 25vh;
+  height: 30vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: red;
 }
 
 .bar_logo {
-  height: 20vh;
+  height: 4.5vw;
+  margin-top: -10vh;
+  min-height: 25px;
   object-fit: cover
 }
 
@@ -75,7 +76,6 @@
 .side_item {
   cursor: pointer;
   background-color: inherit;
-  /* transition: background-color 0.9s; */
   transition: border 0.05s, font-size 0.5s, color 0.5s;
   transition-delay: 0.1s;
   border-radius: 8px;
@@ -84,9 +84,22 @@
 }
 
 .side_item:hover {
-  /* background-color: aquamarine; */
   border: 2px solid aquamarine;
-  /* color: rgb(13, 25, 28); */
+  font-size: 1.3vw;
+}
+
+.side_item2 {
+  cursor: pointer;
+  background-color: inherit;
+  transition: border 0.05s, font-size 0.5s, color 0.5s;
+  transition-delay: 0.1s;
+  border-radius: 8px;
+  width: 10vw;
+  padding: 5px 0 5px 0;
+}
+
+.side_item2:hover {
+  /* border: 2px solid rgb(255, 79, 4); */
   font-size: 1.3vw;
 }
 
@@ -156,7 +169,6 @@
   margin: 0 5px 0 5px;
   cursor: pointer;
   background-color: inherit;
-  /* transition: background-color 0.9s; */
   transition: background-color 0.9s, font-size 0.5s, color 0.5s;
   transition-delay: 0.15s;
   font-size: 1.2vw;
@@ -168,24 +180,48 @@
   font-size: 1.4vw;
 }
 
+.nav1_top2 {
+  padding: 5px 12px 5px 12px;
+  border-radius: 5px;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+  background-color: inherit;
+  transition: background-color 0.9s, font-size 0.5s, color 0.5s;
+  transition-delay: 0.15s;
+  font-size: 1.2vw;
+}
+
+.nav1_top2:hover {
+  /* background-color: rgb(255, 79, 4);
+  color: rgb(13, 25, 28); */
+  font-size: 1.4vw;
+}
+
 .cv {
   text-decoration: none;
   color: inherit;
 }
 
-.hide {}
+.r_icon {
+  cursor: pointer;
+}
 
-.sign_top {
-  display: flex;
-  align-items: center;
+.r_icon_phone {
+  cursor: pointer;
+}
+
+
+.hide {
+  cursor: pointer;
 }
 
 .nav_logo {
-  height: 10vw;
+  height: 2.5vw;
+  min-height: 25px;
   object-fit: contain;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0.5vw;
+  left: 1vw;
 }
 
 /* --------------------------------------TOP-NAV-CSSTRANSITIONS -start*/
@@ -214,13 +250,40 @@
 
 /* --------------------------------------TOP-NAV-CSSTRANSITIONS -ends*/
 
+@media (min-width: 450px) {
+  .r_icon_phone {
+    display: none;
+  }
+}
 
 @media (max-width: 450px) {
+
+  .nav_top {
+    justify-content: center;
+    width: 85vw;
+  }
+
+  .r_icon {
+    display: none;
+  }
+
+  .top_nav_right {
+    min-width: 320px;
+  }
+
   .nav1_top {
     font-size: 4vw;
   }
 
   .nav1_top:hover {
+    font-size: 5vw;
+  }
+
+  .nav1_top2 {
+    font-size: 4vw;
+  }
+
+  .nav1_top2:hover {
     font-size: 5vw;
   }
 
@@ -233,9 +296,37 @@
   }
 
   .top_nav_right {
-    min-width: 450px;
     overflow-x: auto;
-    border: 2px solid;
   }
 
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .r_icon {
+    animation: r_icon-spin infinite 20s linear;
+  }
+
+  .r_icon_phone {
+    animation: r_icon_phone-spin infinite 20s linear;
+  }
+}
+
+@keyframes r_icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes r_icon_phone-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -12,8 +12,8 @@ import { IoIosArrowDropleftCircle } from "react-icons/io"
 import { useSelector, useDispatch } from 'react-redux'
 import { theme_combinations as colors } from '../global_store/theme_combinations';
 import { ActionChangeTheme } from '../global_store/only_reducer';
-import logo2 from '../assets/images/logo2.png'
-import logo1 from '../assets/images/logo1.png'
+import logo_thm_2 from '../assets/images/logo_thm_2.png'
+import logo_thm1_dy from '../assets/images/logo_thm1_dy.png'
 import { base_url } from '../config/env'
 
 
@@ -26,11 +26,13 @@ export default function Nav(props) {
     const dispatch = useDispatch()
     let { bg1, style1, style2, style3, font1, font2, font3 } = colors[theme]
 
+    // let bg =
+
     const findImage = () => {
         if (theme == "thm1") {
-            return logo1
+            return logo_thm1_dy
         } else {
-            return logo2
+            return logo_thm_2
         }
     }
 
@@ -53,13 +55,17 @@ export default function Nav(props) {
     console.log("Y:", props.y_scroll_check)
     return (
         <div className={"nav"}>
+            <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }}>day</div>
+            <div style={{ color: "white", fontSize: "50px", marginTop: "50px" }}>night</div>
             <div className={'nav_img_contn'} >
                 {(!props.nav && props.y_scroll_check) && <HiOutlineBars3CenterLeft className='nav_btn' size={35} color={style3}
                     onClick={() => { props.setNav("left") }}
                 />}
 
             </div>
+
             <CSSTransition in={props.nav == "top"} timeout={1000} classNames="nav_top" unmountOnExit>
+
                 <div className={'nav_top'} style={{ color: style3 }}>
                     <div className='sign_top'>
                         <img className='nav_logo' src={findImage()} />
@@ -69,7 +75,7 @@ export default function Nav(props) {
                             {<IoIosArrowDropleftCircle className={'hide'} size={25} color={theme == "thm1" ? style3 : style1}
                                 onClick={() => { props.setNav(false); }}
                             />}
-                            <FaReact className='r_icon_phone' size={28} color={theme == "thm1" ? style3 : style1} onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "thm1" ? "thm2" : "thm1" })) }} />
+                            {/* <FaReact className='r_icon_phone' size={28} color={theme == "thm1" ? style3 : style1} onClick={() => { dispatch(ActionChangeTheme({ active_theme: theme == "thm1" ? "thm2" : "thm1" })) }} /> */}
                             {["About", "Experience", "Work", "Contact"].map((el, id) =>
                                 <div key={id} className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
                                     onClick={() => { props.setSideMenu(id) }}

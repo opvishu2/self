@@ -1,11 +1,22 @@
 export const theme_combinations = {
     thm1: {
         bg1: "rgb(13, 25, 28)", // like navy blue 
+        bg_day: "antiquewhite",
+        bg_night: "rgb(13, 25, 28)",
         style1: "aquamarine", // like sky color #7FFFD4
         style2: "black", // black
         style3: "aquamarine",
         // style1: "aqua",
         // style3: "#61dafb",
+        font1: 'Lato, sans-serif',
+        font2: "Redressed, cursive",
+        font3: "Croissant One,cursive",
+    },
+    thm1_day: {
+        bg1: "white",
+        style1: "rgb(6, 110, 105)",
+        style2: "black",
+        style3: "rgb(6, 110, 105)",
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",
@@ -17,22 +28,35 @@ export const theme_combinations = {
         // bg1:"#fff",
         style2: "black",
         style3: "rgb(242, 117, 34)",
-        // style3: "rgb(245, 125, 40)",
-        // style3: "rgb(238, 134, 60)",
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",
     },
     thm3: {
-        bg1: "black", // like navy blue 
+        bg1: "black",
         style1: "rgb(255, 0, 166)",
-        style2: "black", // black
+        style2: "black",
         style3: "rgb(255, 0, 166)",
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",
     },
+    thm4: {
+        bg1: "white",
+        style1: "rgb(5, 5, 255)",
+        style2: "black",
+        style3: "rgb(5, 5, 255)",
+        font1: 'Lato, sans-serif',
+        font2: "Redressed, cursive",
+        font3: "Croissant One,cursive",
+    },
 }
+
+
+
+
+
+
 
 /* font-family: 'Sofia', cursive; */
 /* font-family: 'Tangerine', cursive; */

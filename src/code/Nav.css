@@ -56,8 +56,8 @@
 }
 
 .bar_logo {
-  height: 4.5vw;
-  margin-top: -10vh;
+  height: 3vw;
+  margin-top: -5vh;
   min-height: 25px;
   object-fit: cover
 }
@@ -133,7 +133,7 @@
 
 .nav_img_contn {
   position: absolute;
-  left: 1vh;
+  left: 2vh;
   top: 1vh;
 }
 
@@ -206,9 +206,9 @@
   cursor: pointer;
 }
 
-.r_icon_phone {
+/* .r_icon_phone {
   cursor: pointer;
-}
+} */
 
 
 .hide {
@@ -219,7 +219,7 @@
   height: 2.5vw;
   min-height: 25px;
   object-fit: contain;
-  position: absolute;
+  position: fixed;
   top: 0.5vw;
   left: 1vw;
 }
@@ -251,24 +251,33 @@
 /* --------------------------------------TOP-NAV-CSSTRANSITIONS -ends*/
 
 @media (min-width: 450px) {
-  .r_icon_phone {
+  /* .r_icon_phone {
     display: none;
-  }
+  } */
 }
 
 @media (max-width: 450px) {
+  .nav_logo {
+    top: 1.5vh;
+    right: 2vw;
+  }
 
   .nav_top {
     justify-content: center;
     width: 85vw;
   }
 
-  .r_icon {
+  /* .r_icon {
     display: none;
-  }
+  } */
 
   .top_nav_right {
-    min-width: 320px;
+    width: 65vw;
+    min-width: 200px;
+    overflow-x: auto;
+    position: fixed;
+    top: 1vh;
+    right: 1vw;
   }
 
   .nav1_top {
@@ -295,9 +304,6 @@
     min-width: 500px;
   }
 
-  .top_nav_right {
-    overflow-x: auto;
-  }
 
 }
 
@@ -306,9 +312,9 @@
     animation: r_icon-spin infinite 20s linear;
   }
 
-  .r_icon_phone {
+  /* .r_icon_phone {
     animation: r_icon_phone-spin infinite 20s linear;
-  }
+  } */
 }
 
 @keyframes r_icon-spin {
@@ -321,7 +327,7 @@
   }
 }
 
-@keyframes r_icon_phone-spin {
+/* @keyframes r_icon_phone-spin {
   from {
     transform: rotate(0deg);
   }
@@ -329,4 +335,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

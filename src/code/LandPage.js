@@ -17,7 +17,7 @@ export default function LandPage(props) {
     const [top_nav, toggleTopNav] = useState(false)
     // const [timeout, setTime] = useState(false)
     // const [content, setContent] = useState(true)
-    const [nav, setNav] = useState("top")
+    const [nav, setNav] = useState("left")
     const [active_side_menu, setSideMenu] = useState(NaN)
     let { bg1, style1, style2, style3, font1, font2, font3 } = colors[theme]
     const YscrollRef = useRef(undefined)

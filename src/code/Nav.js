@@ -110,7 +110,7 @@ export default function Nav(props) {
                             {<IoIosArrowDropleftCircle className={'hide'} size={25} color={theme == "thm1" ? style3 : style1}
                                 onClick={() => { props.setNav(false); }}
                             />}
-                            {/* <FaReact className='r_icon_phone' size={28} color={theme == "thm1" ? style3 : style1} onClick={} /> */}
+                            <FaReact className='r_icon_phone' size={28} color={style1} onClick={handleThemeChange} />
                             {["About", "Experience", "Work", "Contact"].map((el, id) =>
                                 <div key={id} className={theme == "thm1" ? 'nav1_top' : "nav1_top2"}
                                     onClick={() => { props.setSideMenu(id) }}

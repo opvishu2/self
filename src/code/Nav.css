@@ -206,9 +206,9 @@
   cursor: pointer;
 }
 
-/* .r_icon_phone {
+.r_icon_phone {
   cursor: pointer;
-} */
+}
 
 
 .hide {
@@ -251,9 +251,9 @@
 /* --------------------------------------TOP-NAV-CSSTRANSITIONS -ends*/
 
 @media (min-width: 550px) and (width:550px) {
-  /* .r_icon_phone {
+  .r_icon_phone {
     display: none;
-  } */
+  }
 }
 
 @media (max-width: 550px) {
@@ -267,9 +267,9 @@
     width: 85vw;
   }
 
-  /* .r_icon {
+  .r_icon {
     display: none;
-  } */
+  }
 
   .top_nav_right {
     width: 65vw;
@@ -312,9 +312,9 @@
     animation: r_icon-spin infinite 20s linear;
   }
 
-  /* .r_icon_phone {
+  .r_icon_phone {
     animation: r_icon_phone-spin infinite 20s linear;
-  } */
+  }
 }
 
 @keyframes r_icon-spin {
@@ -327,7 +327,7 @@
   }
 }
 
-/* @keyframes r_icon_phone-spin {
+@keyframes r_icon_phone-spin {
   from {
     transform: rotate(0deg);
   }
@@ -335,4 +335,4 @@
   to {
     transform: rotate(360deg);
   }
-} */
+}

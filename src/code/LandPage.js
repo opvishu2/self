@@ -2,8 +2,10 @@
 
 import React, { useRef, useState, } from 'react'
 import './LandPage.css';
-import self_ng1 from '../assets/images/self_ng1.png'
-import self_dy1 from '../assets/images/self_dy1.png'
+import self_thm1 from '../assets/images/self_thm1.png'
+import self_thm2 from '../assets/images/self_thm2.png'
+import self_thm3 from '../assets/images/self_thm3.png'
+import self_thm4 from '../assets/images/self_thm4.png'
 import Nav from './Nav';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux'
@@ -18,8 +20,10 @@ import { useMediaQuery } from 'react-responsive';
 
 
 
-let selff_ng1 = self_ng1
-let selff_dy1 = self_dy1
+let selff_thm1 = self_thm1
+let selff_thm2 = self_thm2
+let selff_thm3 = self_thm3
+let selff_thm4 = self_thm4
 
 
 export default function LandPage(props) {
@@ -45,9 +49,13 @@ export default function LandPage(props) {
 
     const handleImage = () => {
         if (theme == "thm1") {
-            return selff_ng1
+            return selff_thm1
+        } else if (theme == "thm2") {
+            return selff_thm2
+        } else if (theme == "thm3") {
+            return selff_thm3
         } else {
-            return selff_dy1
+            return selff_thm4
         }
     }
 

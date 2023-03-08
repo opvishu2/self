@@ -10,10 +10,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { theme_combinations as colors } from '../global_store/theme_combinations';
 import TestClass from './TestClass';
 import TestFunctional from './testFunctional';
+import { MdOutlineDarkMode } from "react-icons/md";
+import { FaChevronCircleRight } from "react-icons/fa";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import { ActionChangeTheme, ActionChangeDayNight } from '../global_store/theme_reducer';
+import { useMediaQuery } from 'react-responsive';
+
 
 
 let selff_ng1 = self_ng1
 let selff_dy1 = self_dy1
+
 
 export default function LandPage(props) {
     const dispatch = useDispatch()
@@ -21,16 +28,20 @@ export default function LandPage(props) {
     // const [timeout, setTime] = useState(false)
     // const [content, setContent] = useState(true)
     const [nav, setNav] = useState("top")
-    const [setting_modal, setSettingModal] = useState(true)
+    const [setting_modal, setSettingModal] = useState(false)
     const [active_side_menu, setSideMenu] = useState(NaN)
     const YscrollRef = useRef(undefined)
     const settingRef = useRef(null)
     const [y_scroll, setYScroll] = useState(0)
+    const is_mobile1 = useMediaQuery({ query: `(max-width: 549px)` });
+    const is_mobile2 = useMediaQuery({ query: `(max-width: 300px)` });
+    const side_setting_off = useMediaQuery({ query: `(min-width: 1921px)` });
 
     const theme = useSelector((state) => state.AllReducerCombined.themeChangeReducers.active_theme)
     const n_mode = useSelector((state) => state.AllReducerCombined.themeChangeReducers.night_mode)
-    let { bg_day, bg_night, style1, style2, style3, font1, font2, font3 } = colors[theme]
+    let { bg_day, bg_night, style1, style2, style3, style4, font1, font2, font3 } = colors[theme]
     let BG = n_mode ? bg_night : bg_day
+    let text_color = n_mode ? style1 : style4
 
     const handleImage = () => {
         if (theme == "thm1") {
@@ -58,15 +69,30 @@ export default function LandPage(props) {
 
     const handleSetting = () => {
         setSettingModal(true)
+        console.warn("22")
         // handleThemeChange()
     }
 
+
+    const handleThemeChange = (thm) => {
+        dispatch(ActionChangeTheme({ active_theme: thm }))
+    }
+
+
+    const handleDayNight = () => {
+        dispatch(ActionChangeDayNight({ n_mode: !n_mode }))
+    }
 
     console.warn("process.env == ", process.env)
     return (<>
         {/* <TestFunctional /> */}
         {/* <TestClass /> */}
-        <div className={nav == "left" ? "App" : "App_top"} style={{ background: bg_night, fontFamily: font1 }} ref={YscrollRef} onScroll={onScroll}>
+        <div onClick={() => { setting_modal && setSettingModal(false) }}
+            className={nav == "left" ? "App" : "App_top"}
+            style={{ background: BG, fontFamily: font1, opacity: setting_modal ? 0.95 : 1 }}
+            ref={YscrollRef} onScroll={onScroll}
+
+        >
             <Nav
                 active_side_menu={active_side_menu}
                 setSideMenu={setSideMenu}
@@ -76,9 +102,16 @@ export default function LandPage(props) {
                 setNav={setNav}
                 handleSetting={handleSetting}
             />
-            <CSSTransition in={nav == "top"} timeout={1000} classNames="content" unmountOnExit onExit={() => toggleTopNav(true)} >
+            <CSSTransition
+                setting_modal={setting_modal}
+                setSettingModal={setSettingModal}
+                in={nav == "top"} timeout={1000}
+                classNames="content"
+                unmountOnExit
+                onExit={() => toggleTopNav(true)}
+            >
                 <div className='content'>
-                    <div className='left_c' style={{ color: style1 }}><h1 className='typed' style={{ fontFamily: font3 }}>Hi, Vishal M. here!</h1></div>
+                    <div className='left_c' style={{ color: text_color }}><h1 className='typed' style={{ fontFamily: font3 }}>Hi, Vishal M. here!</h1></div>
                     {/* <div className='left_c' ><h1 className='typed'>Hi, Vishal M. here!</h1></div> */}
                     <div className='right_c'><img className="App-logo" alt="logo" src={handleImage()}></img></div>
                 </div>
@@ -86,25 +119,53 @@ export default function LandPage(props) {
             {nav != "top" &&
                 <div className='content'>
                     {/* <div className='content' style={{ opacity: content ? 1 : 0 }}> */}
-                    <div className='left_c' style={{ color: style1 }}><h1 className='typed' style={{ fontFamily: font3 }}>Hi, Vishal M. here!</h1></div>
+                    <div className='left_c' style={{ color: text_color }}><h1 className='typed' style={{ fontFamily: font3 }}>Hi, Vishal M. here!</h1></div>
                     {/* <div className='left_c'><h1 className='typed'>Hi, Vishal M. here!</h1></div> */}
                     <div className='right_c'><img className="App-logo" alt="logo" src={handleImage()}></img></div>
                 </div>}
 
-            {/* <Modal
-                isOpen={setting_modal}
-                ariaHideApp={false}
-                onAfterOpen={""}
-                onRequestClose={setSettingModal(false)}
-                style={{ content: { maxHeight: '70%', textAlign: 'center', position: "absolute" } }}
-                contentLabel="Example Modal"
-            // ref={settingRef}
-            >
-                <div>
-                    fhkefhs
-                </div>
-            </Modal > */}
         </div>
+
+        <CSSTransition
+            in={setting_modal} timeout={500}
+            classNames="setting_modal"
+            unmountOnExit
+            onExit={""} >
+            <div className='setting_modal' style={{
+                background: "transparent",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                width: "20vw",
+                minWidth: "200px",
+                height: "15vh",
+                maxHeight: "150px",
+            }}>
+                <div style={{ height: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", }}>
+                    <div style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", height: "90%", width: "100%", }}>
+                        {<div style={{ position: "absolute", display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", background: text_color, opacity: 0.1 }}></div>}
+                        <div style={{ zIndex: 1, display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", }}>
+                            {
+                                Object.keys(colors).map((thme, id) => (
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "25%", cursor: "pointer" }}
+                                        onClick={() => { handleThemeChange(thme) }}
+                                    >
+                                        <div style={{ height: "40px", width: "20px", borderRadius: "20px 0px 0px 20px", background: n_mode ? colors[thme].bg_night : colors[thme].bg_day }}></div>
+                                        <div style={{ height: "40px", width: "20px", borderRadius: "0px 20px 20px 0px", background: colors[thme].style1 }}></div>
+                                    </div>
+                                )
+                                )
+                            }
+                        </div>
+                        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", alignItems: "flex-end", height: "30%", width: is_mobile1 ? "40%" : "20%", }}>
+                            <MdOutlineDarkMode color={text_color} size={30} onClick={handleDayNight} style={{ cursor: 'pointer' }} />
+                            <AiOutlineDoubleRight color={text_color} size={30} onClick={() => { setSettingModal(false) }} style={{ cursor: "pointer" }} />
+                        </div>
+                    </div>
+                </div>
+                {/* <div style={{ width: "30%", borderBottom: `1px dashed ${style1}`, }} /> */}
+            </div>
+        </CSSTransition>
     </>
     )
 }

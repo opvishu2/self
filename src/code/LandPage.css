@@ -81,7 +81,45 @@ body {}
   transition: transform 300ms;
 }
 
+.setting_modal {
+  position: absolute;
+  top: 9vh;
+  right: 5vh;
+  height: 12vh;
+  max-height: 120px;
+  width: 30vw;
+  z-index: 2;
+  /* background: rgb(206, 189, 189); */
+}
+
 /* --------------------------------------content-CSSTRANSITIONS -ends*/
+
+/* --------------------------------------setting_modal -CSSTRANSITIONS -start*/
+
+.setting_modal-enter {
+  opacity: 0;
+  transform: translateX(10vh);
+}
+
+.setting_modal-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 500ms, opacity 500ms;
+}
+
+.setting_modal-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.setting_modal-exit-active {
+  transform: translateX(10vh);
+  opacity: 0;
+  transition: transform 500ms, opacity 500ms;
+}
+
+/* --------------------------------------setting_modal-CSSTRANSITIONS -ends*/
+
 
 @keyframes typing {
   from {

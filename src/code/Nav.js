@@ -141,7 +141,6 @@ export default function Nav(props) {
                             {is_mobile1 &&
                                 <a className='cv' href={cv} target="_blank"><RiFileDownloadFill size={"6vw"} /></a>
                             }
-                            {is_mobile1 && <FaReact className='r_icon' size={"6vw"} color={style1} onClick={props.handleSetting} />}
                             {["About", "Experience", "Work", "Contact"].map((el, id) =>
                                 <div key={id} className={decideClassNames("nav1_top")}
                                     onClick={() => { props.setSideMenu(id) }}
@@ -155,6 +154,7 @@ export default function Nav(props) {
                                 <a className='cv' href={cv} target="_blank">Resume</a>
                             </div>}
                             {!is_mobile1 && <FaReact className='r_icon' size={"3vw"} color={style1} onClick={props.handleSetting} />}
+                            {is_mobile1 && <FaReact className='r_icon' size={"6vw"} color={style1} onClick={props.handleSetting} />}
                         </div>
                     </div>
                 </div>

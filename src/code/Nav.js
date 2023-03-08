@@ -27,7 +27,7 @@ export default function Nav(props) {
 
     const { collapseSidebar } = useProSidebar();
     const dispatch = useDispatch()
-    const [is_mobile1, setIsMobile] = useState(false)
+    const is_mobile1 = useMediaQuery({ query: `(max-width: 549px)` });
     const is_mobile2 = useMediaQuery({ query: `(max-width: 300px)` });
 
 
@@ -83,18 +83,18 @@ export default function Nav(props) {
     }
 
 
-    useLayoutEffect(() => {
-        window.addEventListener("resize", handleResolutionChanges) //activating the listner from very begginging
-    })
+    // useLayoutEffect(() => {
+    //     window.addEventListener("resize", handleResolutionChanges) //activating the listner from very begginging
+    // })
 
 
-    const handleResolutionChanges = () => {
-        if (window.innerWidth < 550) {
-            setIsMobile(true)
-        } else {
-            setIsMobile(false)
-        }
-    }
+    // const handleResolutionChanges = () => {
+    //     if (window.innerWidth < 550) {
+    //         setIsMobile(true)
+    //     } else {
+    //         setIsMobile(false)
+    //     }
+    // }
 
 
     // const download = () => {

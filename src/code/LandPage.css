@@ -1,0 +1,146 @@
+body {}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+
+.App::-webkit-scrollbar {
+  display: none;
+}
+
+.App {
+  height: 100vh;
+  overflow-y: auto;
+  text-align: center;
+  display: flex;
+  min-width: 250px;
+}
+
+.App_top {
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+}
+
+.content {
+  min-height: 110vh;
+  width: 90vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.left_c {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right_c {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.App-logo {
+  max-width: 100%;
+}
+
+.typed {
+  overflow: hidden;
+  font-size: 3vw;
+  white-space: nowrap;
+  border-right: 2px solid;
+  width: 0;
+  animation: typing 1.5s steps(30, end) forwards, blinking 1s 2s;
+}
+
+/* --------------------------------------content -CSSTRANSITIONS -start*/
+
+.content-enter {
+  transform: translateY(-5vh);
+}
+
+.content-enter-active {
+  transform: translateY(0);
+  transition: transform 300ms;
+}
+
+.content-exit {
+  transform: translateY(0%);
+}
+
+.content-exit-active {
+  transform: translateY(-5vh);
+  transition: transform 300ms;
+}
+
+.setting_modal {
+  position: absolute;
+  top: 9vh;
+  right: 5vh;
+  height: 12vh;
+  max-height: 120px;
+  width: 30vw;
+  z-index: 2;
+  /* background: rgb(206, 189, 189); */
+}
+
+/* --------------------------------------content-CSSTRANSITIONS -ends*/
+
+/* --------------------------------------setting_modal -CSSTRANSITIONS -start*/
+
+.setting_modal-enter {
+  opacity: 0;
+  transform: translateX(10vh);
+}
+
+.setting_modal-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 500ms, opacity 500ms;
+}
+
+.setting_modal-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.setting_modal-exit-active {
+  transform: translateX(10vh);
+  opacity: 0;
+  transition: transform 500ms, opacity 500ms;
+}
+
+/* --------------------------------------setting_modal-CSSTRANSITIONS -ends*/
+
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 45%
+  }
+}
+
+@keyframes blinking {
+  0% {
+    border-right-color: transparent
+  }
+
+  50% {
+    border-right-color: #61dafb
+  }
+
+  100% {
+    border-right-color: transparent
+  }
+}

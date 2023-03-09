@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import Routss from "./routes";
+import { ProSidebarProvider } from 'react-pro-sidebar';
+import { Provider } from 'react-redux'
+import global_store from './global_store/store'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={global_store}>
+      <ProSidebarProvider>
+        <Routss />
+      </ProSidebarProvider>
+    </Provider>)
 }
 
 export default App;

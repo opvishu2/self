@@ -117,32 +117,6 @@ body {}
 /* --------------------------------------setting_modal-CSSTRANSITIONS -ends*/
 
 
-/* --------------------------------------setting_modal_phone -CSSTRANSITIONS -start*/
-.setting_modal_phone-enter {
-  opacity: 0;
-  transform: translateX(10vh);
-}
-
-.setting_modal_phone-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms;
-  transform: translateX(0);
-  transition: transform 500ms, opacity 500ms;
-}
-
-.setting_modal_phone-exit {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.setting_modal_phone-exit-active {
-  opacity: 0;
-  transition: opacity 1000ms;
-  transform: translateX(10vh);
-  transition: transform 500ms, opacity 500ms;
-}
-
-/* --------------------------------------setting_modal_phone-CSSTRANSITIONS -ends*/
 
 @keyframes typing {
   from {

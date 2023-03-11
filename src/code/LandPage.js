@@ -1,11 +1,8 @@
 
 
+
 import React, { useLayoutEffect, useRef, useState, } from 'react'
 import './LandPage.css';
-import self_thm1 from '../assets/images/self_thm1.png'
-import self_thm2 from '../assets/images/self_thm2.png'
-import self_thm3 from '../assets/images/self_thm3.png'
-import self_thm4 from '../assets/images/self_thm4.png'
 import Nav from './Nav';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux'
@@ -20,14 +17,8 @@ import { useMediaQuery } from 'react-responsive';
 import Experience from './subPages/Exp';
 import Work from './subPages/Work';
 import Contact from './subPages/Contact';
-import { useNavigate } from "react-router-dom";
-
-
-
-let selff_thm1 = self_thm1
-let selff_thm2 = self_thm2
-let selff_thm3 = self_thm3
-let selff_thm4 = self_thm4
+import { useNavigate, Routes, Route, Link } from "react-router-dom";
+import About from './subPages/About';
 
 
 export default function LandPage(props) {
@@ -87,6 +78,7 @@ export default function LandPage(props) {
 
         if (Math.trunc(route_index) !== curr_route_page) { // For changing route name in sync with scroll
             navigate({ pathname: route_index == 0 ? "/" : pages[route_index] })
+            setActiveMenu(route_index)
             setRoute(route_index)
         }
 
@@ -133,19 +125,6 @@ export default function LandPage(props) {
     }
 
 
-    const handleImage = () => {
-        if (theme == "thm1") {
-            return selff_thm1
-        } else if (theme == "thm2") {
-            return selff_thm2
-        } else if (theme == "thm3") {
-            return selff_thm3
-        } else {
-            return selff_thm4
-        }
-    }
-
-
     const handleSetting = () => {
         setSettingModal(true)
     }
@@ -188,27 +167,31 @@ export default function LandPage(props) {
                 is_mobile2={is_mobile2}
                 side_setting_off={side_setting_off}
             />
-            <CSSTransition
-                setting_modal={setting_modal}
-                setSettingModal={setSettingModal}
-                in={nav == "top"} timeout={1000}
-                classNames="content"
-                unmountOnExit
-                onExit={() => toggleTopNav(true)}
-            >
-                <div className='content'>
-                    <div className='left_c' style={{ color: text_color }}><h1 className='typed' style={{ fontFamily: font3 }}>Hi, Vishal M. here!</h1></div>
-                    <div className='right_c'><img className="App-logo" alt="logo" src={handleImage()}></img></div>
-                </div>
-            </CSSTransition>
-            {nav != "top" &&
-                <div className='content'>
-                    <div className='left_c' style={{ color: text_color }}><h1 className='typed' style={{ fontFamily: font3 }}>Hi, Vishal M. here!</h1></div>
-                    <div className='right_c'><img className="App-logo" alt="logo" src={handleImage()}></img></div>
-                </div>}
+            {nav == "left" && <Routes>
+                <Route path="/" element={<About
+                    nav={nav}
+                    setting_modal={setting_modal}
+                    text_color={text_color}
+                    colors={colors}
+                    toggleTopNav={toggleTopNav}
+                    theme={theme}
+                />} />
+                <Route path='/Experience' element={<Experience />} />
+                <Route path='/Work' element={<Work />} />
+                <Route path='/Contact' element={<Contact />} />
+            </Routes>}
 
             {nav !== "left" &&
-                <><Experience />
+                <>
+                    <About
+                        nav={nav}
+                        setting_modal={setting_modal}
+                        text_color={text_color}
+                        colors={colors}
+                        toggleTopNav={toggleTopNav}
+                        theme={theme}
+                    />
+                    <Experience />
                     <Work />
                     <Contact />
                 </>
@@ -265,10 +248,10 @@ export default function LandPage(props) {
         {is_mobile1 &&
             <CSSTransition
                 in={setting_modal} timeout={500}
-                classNames="setting_modal_phone"
+                classNames="setting_modal"
                 unmountOnExit
                 onExit={""} >
-                <div className='setting_modal_phone' style={{
+                <div className='setting_modal' style={{
                     background: "transparent",
                     display: "flex",
                     flexDirection: "column",

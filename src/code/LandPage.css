@@ -1,5 +1,10 @@
 body {}
 
+.container {
+  height: 100vh;
+  overflow-x: auto;
+}
+
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -12,7 +17,7 @@ body {}
 }
 
 .App {
-  height: 100vh;
+  /* height: 100vh; */
   overflow-y: auto;
   text-align: center;
   display: flex;
@@ -20,7 +25,7 @@ body {}
 }
 
 .App_top {
-  height: 100vh;
+  /* height: 100vh; */
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -81,16 +86,7 @@ body {}
   transition: transform 300ms;
 }
 
-.setting_modal {
-  position: absolute;
-  top: 9vh;
-  right: 5vh;
-  height: 12vh;
-  max-height: 120px;
-  width: 30vw;
-  z-index: 2;
-  /* background: rgb(206, 189, 189); */
-}
+
 
 /* --------------------------------------content-CSSTRANSITIONS -ends*/
 
@@ -120,6 +116,33 @@ body {}
 
 /* --------------------------------------setting_modal-CSSTRANSITIONS -ends*/
 
+
+/* --------------------------------------setting_modal_phone -CSSTRANSITIONS -start*/
+.setting_modal_phone-enter {
+  opacity: 0;
+  transform: translateX(10vh);
+}
+
+.setting_modal_phone-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+  transform: translateX(0);
+  transition: transform 500ms, opacity 500ms;
+}
+
+.setting_modal_phone-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.setting_modal_phone-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+  transform: translateX(10vh);
+  transition: transform 500ms, opacity 500ms;
+}
+
+/* --------------------------------------setting_modal_phone-CSSTRANSITIONS -ends*/
 
 @keyframes typing {
   from {

@@ -82,6 +82,7 @@
   border-radius: 8px;
   width: 10vw;
   padding: 5px 0 5px 0;
+  text-decoration: none;
 }
 
 .side_item:hover {
@@ -97,6 +98,7 @@
   border-radius: 8px;
   width: 10vw;
   padding: 5px 0 5px 0;
+  text-decoration: none;
 }
 
 .side_item2:hover {
@@ -154,6 +156,7 @@
   min-width: 40%;
   display: flex;
   width: fit-content;
+  border-radius: 12px;
   /* font-family: 'Redressed', cursive; */
 }
 
@@ -173,6 +176,7 @@
   transition: background-color 0.9s, font-size 0.5s, color 0.5s;
   transition-delay: 0.15s;
   font-size: 1.2vw;
+  text-decoration: none;
 }
 
 .nav1_top:hover {
@@ -225,6 +229,7 @@
   position: fixed;
   top: 0.5vw;
   left: 1vw;
+  z-index: 1;
 }
 
 /* --------------------------------------TOP-NAV-CSSTRANSITIONS -start*/

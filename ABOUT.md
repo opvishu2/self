@@ -24,7 +24,7 @@ branch-name-wise explanation :
 
             # added a file manually and updated necessary persmissions use it in ui directly to backend is needed uptill here.
 
-    1.8:
+    1.8 , 1.9:
         OBJECTIVE=> design corrections:
             # to use any font family google api , refer doc == https://stackoverflow.com/questions/40769551/how-to-use-google-fonts-in-react-js
 
@@ -35,7 +35,7 @@ branch-name-wise explanation :
             # used useRef for closing side nav once scrolled down.
 
             #(INCLUDES 
-                useSelector,react-transition-group,useDispatch,scrollTop,react-icons,react-pro-sidebar,window.innerWidth,dppx i.e. device pixel ratio,window,addEventListener,scrollIntoView for smooth scroll to a selected div top,useNavigate,e.target.scrollHeight,e.target.scrollTop,e.target.clientHeight,onScroll,onMouseLeave,onMouseLeave,
+                useSelector,react-transition-group,useDispatch,scrollTop,react-icons,react-pro-sidebar,window.innerWidth,dppx i.e. device pixel ratio,window,addEventListener,scrollIntoView for smooth scroll to a selected div top,useNavigate,e.target.scrollHeight,e.target.scrollTop,e.target.clientHeight,onScroll,onMouseLeave,onMouseLeave, react-type-animation, @ramonak/react-progress-bar,react-circular-progressbar,
 
             )
 

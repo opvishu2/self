@@ -11,7 +11,7 @@ import TestClass from './TestClass';
 import TestFunctional from './testFunctional';
 import { MdOutlineDarkMode } from "react-icons/md";
 import { FaChevronCircleRight } from "react-icons/fa";
-import { AiOutlineDoubleRight } from "react-icons/ai";
+import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from "react-icons/ai";
 import { ActionChangeTheme, ActionChangeDayNight } from '../global_store/theme_reducer';
 import { useMediaQuery } from 'react-responsive';
 import Experience from './subPages/Exp';
@@ -19,6 +19,7 @@ import Work from './subPages/Work';
 import Contact from './subPages/Contact';
 import { useNavigate, Routes, Route, Link } from "react-router-dom";
 import About from './subPages/About';
+import Skills from './subPages/Skills';
 
 
 export default function LandPage(props) {
@@ -28,7 +29,7 @@ export default function LandPage(props) {
     const [nav, setNav] = useState("top")
     const [setting_modal, setSettingModal] = useState(false)
     const [active_menu, setActiveMenu] = useState(NaN)
-    const pages = ["About", "Experience", "Work", "Contact"]
+    const pages = ["About", "Skills", "Experience", "Work", "Contact"]
     const YscrollRef = useRef(undefined)
     const settingRef = useRef(null)
     const [y_scroll, setYScroll] = useState(0)
@@ -73,8 +74,8 @@ export default function LandPage(props) {
 
     const handleScroll = async (e) => {
         const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-        const before_scroll_margin = 100
-        let route_index = Math.abs(Math.trunc((e.target.scrollHeight - e.target.scrollTop - before_scroll_margin) / e.target.clientHeight) - 3)
+        const before_scroll_margin = (window.innerHeight / 2) - 50
+        let route_index = Math.abs(Math.trunc((e.target.scrollHeight - e.target.scrollTop - before_scroll_margin) / e.target.clientHeight) - (pages.length - 1))
 
         if (Math.trunc(route_index) !== curr_route_page) { // For changing route name in sync with scroll
             navigate({ pathname: route_index == 0 ? "/" : pages[route_index] })
@@ -90,8 +91,7 @@ export default function LandPage(props) {
         // console.log("bottom : ", bottom)
         // console.log("e.target.scrollHeight : ", e.target.scrollHeight)
         // console.log("e.target.scrollTop : ", e.target.scrollTop)
-        // console.log("e.target.scrollBottom : ", e.target.scrollBottom)
-        console.log("e.target.clientHeight : ", e.target.clientHeight)
+        // console.log("e.target.clientHeight : ", e.target.clientHeight)
         // console.warn("route_index : ", route_index)
         // console.warn("curr_route_page : ", curr_route_page)
         // console.log("Scrolltop : ", scrollTop)
@@ -140,7 +140,9 @@ export default function LandPage(props) {
     }
 
 
-    console.warn("process.env == ", process.env)
+    // console.warn("process.env == ", process.env)
+    console.warn("PH : ", is_mobile1)
+    { console.log("window.innerWidth : ", window.innerWidth) }
     // console.log("nav : ", nav)
     // console.log("y_scroll : ", y_scroll)
     // console.log("show_triple_bar : ", y_scroll, y_scroll > 40 ? false : true)
@@ -151,7 +153,7 @@ export default function LandPage(props) {
             className={nav == "left" ? "App" : "App_top"} id="About"
             style={{ background: BG, fontFamily: font1, opacity: setting_modal ? 0.95 : 1 }}
         >
-            <Nav
+            <Nav // Both Navigators
                 active_menu={active_menu}
                 setActiveMenu={setActiveMenu}
                 top_nav={top_nav} toggleTopNav={toggleTopNav}
@@ -167,6 +169,8 @@ export default function LandPage(props) {
                 is_mobile2={is_mobile2}
                 side_setting_off={side_setting_off}
             />
+
+
             {nav == "left" && <Routes>
                 <Route path="/" element={<About
                     nav={nav}
@@ -176,10 +180,13 @@ export default function LandPage(props) {
                     toggleTopNav={toggleTopNav}
                     theme={theme}
                 />} />
+                <Route path='/Skills' element={<Skills />} />
                 <Route path='/Experience' element={<Experience />} />
                 <Route path='/Work' element={<Work />} />
                 <Route path='/Contact' element={<Contact />} />
             </Routes>}
+
+
 
             {nav !== "left" &&
                 <>
@@ -190,6 +197,20 @@ export default function LandPage(props) {
                         colors={colors}
                         toggleTopNav={toggleTopNav}
                         theme={theme}
+                        is_mobile1={is_mobile1}
+                    />
+                    <Skills
+                        nav={nav}
+                        setting_modal={setting_modal}
+                        text_color={text_color}
+                        colors={colors}
+                        theme={theme}
+                        is_mobile1={is_mobile1}
+                        is_mobile2={is_mobile2}
+                        active_menu={active_menu}
+                        pages={pages}
+                        BG={BG}
+                        n_mode={n_mode}
                     />
                     <Experience />
                     <Work />
@@ -199,7 +220,7 @@ export default function LandPage(props) {
         </div>
 
 
-        {!is_mobile1 &&
+        {!is_mobile1 && // theme change bar for PCs
             <CSSTransition
                 in={setting_modal} timeout={500}
                 classNames="setting_modal"
@@ -245,34 +266,34 @@ export default function LandPage(props) {
             </CSSTransition>}
 
 
-        {is_mobile1 &&
+        {is_mobile1 && // Theme chmge bar for phones
             <CSSTransition
                 in={setting_modal} timeout={500}
-                classNames="setting_modal"
+                classNames="setting_modal_p"
                 unmountOnExit
                 onExit={""} >
-                <div className='setting_modal' style={{
+                <div className='setting_modal_p' style={{
                     background: "transparent",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
                     width: "100vw",
-                    minWidth: "300px",
+                    // minWidth: "320px",
                     height: "15vh",
                     maxHeight: "150px",
                     position: "absolute",
                     bottom: "2vh",
                     zIndex: 2,
                 }}>
-                    <div style={{ height: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", width: "20vw", minWidth: "300px" }}>
+                    <div style={{ height: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", minWidth: "350px", }}>
                         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", alignItems: "flex-end", height: "30%", marginRight: 20 }}>
-                            <MdOutlineDarkMode color={text_color} size={30} onClick={handleDayNight} style={{ cursor: 'pointer' }} />
+                            <AiOutlineDoubleLeft color={text_color} size={30} onClick={() => { setSettingModal(false) }} style={{ cursor: "pointer" }} />
                         </div>
                         <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", height: "90%", width: "100%", }}>
-                            {<div style={{ position: "absolute", display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", background: text_color, opacity: 0.1 }}></div>}
+                            {<div style={{ position: "absolute", display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", background: text_color, opacity: 0.1, }}></div>}
 
-                            <div style={{ zIndex: 1, display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", }}>
+                            <div style={{ zIndex: 1, display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", padding: "0 15px 0 15px", }}>
                                 {
                                     Object.keys(colors).map((thme, id) => (
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "25%", cursor: "pointer" }}
@@ -288,7 +309,7 @@ export default function LandPage(props) {
 
                         </div>
                         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", alignItems: "flex-end", height: "30%", marginLeft: 20 }}>
-                            <AiOutlineDoubleRight color={text_color} size={30} onClick={() => { setSettingModal(false) }} style={{ cursor: "pointer" }} />
+                            <MdOutlineDarkMode color={text_color} size={30} onClick={handleDayNight} style={{ cursor: 'pointer' }} />
                         </div>
                     </div>
                 </div>

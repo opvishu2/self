@@ -52,6 +52,9 @@ export default function Nav(props) {
     let { bg_day, bg_night, style1, style2, style3, style4, style5, font1, font2, font3 } = colors[theme]
     let BG = n_mode ? bg_night : bg_day
     let text_color = n_mode ? style1 : style4
+    let dWidth = window.innerWidth
+    let dHeight = window.innerHeight
+
 
     let logoo_thm_2 = props.is_mobile1 ? logo_thm_2_phone : logo_thm_2
     let logoo_thm_1_day = props.is_mobile1 ? logo_thm_1_day_phone : logo_thm_1_day
@@ -60,10 +63,11 @@ export default function Nav(props) {
     let logoo_thm_4 = props.is_mobile1 ? logo_thm_4_phone : logo_thm_4
 
     const handleTopNavButtonsStyle = (id) => {
-        let styles = { bg: "", clr: "", brdr: "" }
+        let styles = { bg: "", clr: "", brdr: "", fontSize: "" }
         styles.bg = props.active_menu == id ? style3 : ""
         styles.brdr = `${theme == "thm1" ? "2px" : "2px"} solid ${text_color}`
         styles.clr = props.active_menu == id ? n_mode ? BG : style5 : text_color
+        styles.fontSize = props.active_menu == id ? "6vw" : "4vw"
 
         return styles
     }
@@ -99,6 +103,13 @@ export default function Nav(props) {
     }
 
 
+    const [phone_entry, setPhoneEntry] = useState(false)
+    useLayoutEffect(() => {
+        setInterval(() => {
+            setPhoneEntry(true)
+        }, 500);
+    }, [])
+
     return (
         <div className={"nav"}>
             <div className={'nav_img_contn'} >
@@ -108,53 +119,101 @@ export default function Nav(props) {
 
             </div>
 
-            <CSSTransition in={(props.nav == "top")} timeout={1000} classNames="nav_top" unmountOnExit>
-                <div className={'nav_top'} style={{ color: style3, }}>
-                    {console.log("window.innerWidth : ", window.innerWidth)}
+            {!props.is_mobile1 && // NAV FOR PC
+                <CSSTransition in={(props.nav == "top")} timeout={1000} classNames="nav_top" unmountOnExit>
+                    <div className={'nav_top'} style={{ color: style3, }}>
+                        {!props.is_mobile2 && <div className='sign_top' >
+                            <img className='nav_logo' style={{ minHeight: props.is_mobile1 ? "30px" : "", position: props.is_mobile1 ? "fixed" : "", left: props.is_mobile1 ? "2vw" : "", top: props.is_mobile1 ? "2vh" : "" }} src={handleImage()} />
+                        </div>}
+                        <div className='top_nav_right' style={{ fontFamily: font2, position: props.is_mobile1 ? "fixed" : "", left: props.is_mobile1 ? dWidth * 0.45 : "", minWidth: props.is_mobile1 ? dWidth * 0.40 : "", maxWidth: dWidth * 0.50, }}>
+                            <div className={'nav_top_menus'}>
+
+                                <div style={{ width: 30, height: "5vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                    <CSSTransition in={(!props.is_mobile1 && props.show_triple_bar)} timeout={1000} classNames="hide" unmountOnExit>
+                                        <IoIosArrowDropleftCircle className={'hide'} size={30} color={text_color}
+                                            onClick={() => {
+                                                props.setNav(false)
+                                                props.Top()
+                                            }}
+                                        />
+                                    </CSSTransition >
+                                </div>
+
+                                {props.is_mobile1 &&
+                                    <a className='cv' href={cv} target="_blank"><ImDownload size={22} color={text_color} style={{
+                                        position: "fixed", top: "2vh", left: dWidth * 0.25,
+                                    }} /></a>
+                                }
+                                {props.pages.map((el, id) =>
+                                    <Link to={el == "About" ? "/" : el} key={id} className={"nav1_top"}
+                                        // background-color: aquamarine;
+                                        // color: rgb(13, 25, 28);
+                                        onMouseEnter={(e) => { if (id !== props.active_menu) { e.target.style.color = BG; e.target.style.background = style3 } }}
+                                        onMouseLeave={(e) => { if (id !== props.active_menu) { e.target.style.color = text_color; e.target.style.background = "inherit" } }}
+                                        onClick={() => { props.setActiveMenu(id); props.handleNavClickScroll(el) }}
+                                        style={{ background: handleTopNavButtonsStyle(id).bg, color: handleTopNavButtonsStyle(id).clr }}
+                                    >{el}</Link>
+                                )}
+                                {!props.is_mobile1 && <div className={"nav1_top"}
+                                    onClick={() => { props.setActiveMenu(4) }}
+                                    style={{ border: handleTopNavButtonsStyle().brdr }} >
+                                    {!props.is_mobile1 && < a className='cv' href={cv} target="_blank" style={{ color: text_color }}
+                                    >Resume</a>}
+                                </div>}
+                                {!props.is_mobile1 && <FaReact className='r_icon' size={28} color={text_color} onClick={props.handleSetting} />}
+                                {props.is_mobile1 && <FaReact className='r_icon' size={33} color={text_color} onClick={props.handleSetting} />}
+                            </div>
+                        </div>
+                    </div>
+                </CSSTransition >}
+
+
+            {props.is_mobile1 && //====================================== NAV FOR MOBILE 
+                <div className={'phone_nav'} style={{ color: style3, }}>
                     {!props.is_mobile2 && <div className='sign_top' >
                         <img className='nav_logo' style={{ minHeight: props.is_mobile1 ? "30px" : "", position: props.is_mobile1 ? "fixed" : "", left: props.is_mobile1 ? "2vw" : "", top: props.is_mobile1 ? "2vh" : "" }} src={handleImage()} />
                     </div>}
-                    <div className='top_nav_right' style={{ fontFamily: font2, position: props.is_mobile1 ? "fixed" : "", left: props.is_mobile1 ? window.innerWidth * 0.45 : "", minWidth: props.is_mobile1 ? window.innerWidth * 0.40 : "", maxWidth: window.innerWidth * 0.50, }}>
-                        <div className={'nav_top_menus'}>
-
-                            <div style={{ width: 30, height: "5vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <CSSTransition in={(!props.is_mobile1 && props.show_triple_bar)} timeout={1000} classNames="hide" unmountOnExit>
-                                    <IoIosArrowDropleftCircle className={'hide'} size={30} color={text_color}
-                                        onClick={() => {
-                                            props.setNav(false)
-                                            props.Top()
+                    {<a className='cv' href={cv} target="_blank"><ImDownload size={22} color={text_color} style={{
+                        position: "fixed", top: "2vh", left: props.is_mobile2 ? dWidth * 0.05 : dWidth * 0.27,
+                    }} /></a>
+                    }
+                    <CSSTransition in={(phone_entry)} timeout={1000} classNames="phone_nav" unmountOnExit>
+                        <div
+                            style={{
+                                fontFamily: font2, position: "fixed",
+                                right: 0,
+                                width: "65vw", minWidth: dWidth * 0.40, maxWidth: dWidth * 0.53,
+                                borderRadius: "12px", minWidth: "200px", overflowX: "auto",
+                                position: "fixed", top: "1vh", right: "1vw",
+                            }}>
+                            <div
+                                style={{
+                                    display: "flex", width: "fit-content", minWidth: "200px", justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}
+                            >
+                                {props.pages.map((el, id) =>
+                                    <Link to={el == "About" ? "/" : el} key={id}
+                                        onMouseEnter={(e) => { if (id !== props.active_menu) { e.target.style.color = BG; e.target.style.background = style3 } }}
+                                        onMouseLeave={(e) => { if (id !== props.active_menu) { e.target.style.color = text_color; e.target.style.background = "inherit" } }}
+                                        onClick={() => { props.setActiveMenu(id); props.handleNavClickScroll(el) }}
+                                        style={{
+                                            fontSize: handleTopNavButtonsStyle(id).fontSize, background: handleTopNavButtonsStyle(id).bg, color: handleTopNavButtonsStyle(id).clr,
+                                            padding: "5px 12px 5px 12px", margin: "0 5px 0 5px", borderRadius: "5px", textDecoration: "none",
+                                            transition: "background-color 0.9s, font-size 0.5s, color 0.5s",
+                                            transitionDelay: "0.15s",
                                         }}
-                                    />
-                                </CSSTransition >
+                                    >{el}</Link>
+                                )}
+                                {props.is_mobile1 && <FaReact className='r_icon' size={33} color={text_color} onClick={props.handleSetting} />}
                             </div>
-
-                            {props.is_mobile1 &&
-                                <a className='cv' href={cv} target="_blank"><ImDownload size={28} color={text_color} style={{
-                                    position: "fixed", top: "2vh", left: window.innerWidth * 0.25,
-                                }} /></a>
-                            }
-                            {props.pages.map((el, id) =>
-                                <Link to={el == "About" ? "/" : el} key={id} className={"nav1_top"}
-                                    // background-color: aquamarine;
-                                    // color: rgb(13, 25, 28);
-                                    onMouseEnter={(e) => { if (id !== props.active_menu) { e.target.style.color = BG; e.target.style.background = style3 } }}
-                                    onMouseLeave={(e) => { if (id !== props.active_menu) { e.target.style.color = text_color; e.target.style.background = "inherit" } }}
-                                    onClick={() => { props.setActiveMenu(id); props.handleNavClickScroll(el) }}
-                                    style={{ background: handleTopNavButtonsStyle(id).bg, color: handleTopNavButtonsStyle(id).clr }}
-                                >{el}</Link>
-                            )}
-                            {!props.is_mobile1 && <div className={"nav1_top"}
-                                onClick={() => { props.setActiveMenu(4) }}
-                                style={{ border: handleTopNavButtonsStyle().brdr }} >
-                                {!props.is_mobile1 && < a className='cv' href={cv} target="_blank" style={{ color: text_color }}
-                                >Resume</a>}
-                            </div>}
-                            {!props.is_mobile1 && <FaReact className='r_icon' size={28} color={text_color} onClick={props.handleSetting} />}
-                            {props.is_mobile1 && <FaReact className='r_icon' size={33} color={text_color} onClick={props.handleSetting} />}
                         </div>
-                    </div>
+
+                    </CSSTransition>
                 </div>
-            </CSSTransition >
+            }
+
+
 
             {< div className={props.nav == "left" ? 'sidebar' : "sidebar_closed"} style={{ background: BG, color: text_color, fontFamily: font3, }
             }>

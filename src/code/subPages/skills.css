@@ -1,0 +1,61 @@
+/* --------------------------------------skill_p_container -CSSTRANSITIONS -start*/
+
+.skill_p_container-enter {
+    opacity: 0;
+}
+
+.skill_p_container-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.skill_p_container-exit {
+    opacity: 1;
+}
+
+.skill_p_container-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+/* --------------------------------------skill_p_container-CSSTRANSITIONS -ends*/
+
+.bar_container_p_thm1_n {
+    border: 1px solid aquamarine;
+    border-radius: 0.5vh;
+}
+
+.bar_container_p_thm1_d {
+    border: 1px solid rgb(6, 110, 105);
+    border-radius: 0.5vh;
+}
+
+.bar_container_p_thm2_n {
+    border: 1px solid rgb(255, 79, 4);
+    border-radius: 0.5vh;
+}
+
+.bar_container_p_thm2_d {
+    border: 1px solid rgb(255, 79, 4);
+    border-radius: 0.5vh;
+}
+
+.bar_container_p_thm3_n {
+    border: 1px solid rgb(255, 0, 166);
+    border-radius: 0.5vh;
+}
+
+.bar_container_p_thm3_d {
+    border: 1px solid rgb(255, 0, 166);
+    border-radius: 0.5vh;
+}
+
+.bar_container_p_thm4_n {
+    border: 1px solid rgb(5, 5, 255);
+    border-radius: 0.5vh;
+}
+
+.bar_container_p_thm4_d {
+    border: 1px solid rgb(5, 5, 255);
+    border-radius: 0.5vh;
+}

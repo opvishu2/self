@@ -225,7 +225,7 @@
   min-height: 25px;
   object-fit: contain;
   position: fixed;
-  top: 0.5vw;
+  top: 2vh;
   left: 1vw;
   z-index: 1;
 }
@@ -278,6 +278,34 @@
 
 
 /* --------------------------------------hide-CSSTRANSITIONS -ends*/
+
+
+
+/* --------------------------------------phone_nav -CSSTRANSITIONS -start*/
+
+.phone_nav-enter {
+  opacity: 0;
+  transform: translateX(10vh);
+}
+
+.phone_nav-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 1000ms, opacity 1000ms;
+}
+
+.phone_nav-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.phone_nav-exit-active {
+  transform: translateX(10vh);
+  opacity: 0;
+  transition: transform 1000ms, opacity 1000ms;
+}
+
+/* --------------------------------------setting_modal-CSSTRANSITIONS -ends*/
 
 
 @media (min-width: 550px) {

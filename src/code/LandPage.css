@@ -116,6 +116,32 @@ body {}
 
 /* --------------------------------------setting_modal-CSSTRANSITIONS -ends*/
 
+/* --------------------------------------setting_modal_p -CSSTRANSITIONS -start*/
+
+.setting_modal_p-enter {
+  opacity: 0;
+  transform: translateX(-10vh);
+}
+
+.setting_modal_p-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 500ms, opacity 500ms;
+}
+
+.setting_modal_p-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.setting_modal_p-exit-active {
+  transform: translateX(-10vh);
+  opacity: 0;
+  transition: transform 500ms, opacity 500ms;
+}
+
+/* --------------------------------------setting_modal-CSSTRANSITIONS -ends*/
+
 
 
 @keyframes typing {
@@ -128,13 +154,27 @@ body {}
   }
 }
 
+@keyframes typingg {
+
+  /* For moblie */
+  from {
+    width: 0
+  }
+
+  to {
+    width: 80%
+  }
+}
+
+
 @keyframes blinking {
   0% {
     border-right-color: transparent
   }
 
   50% {
-    border-right-color: #61dafb
+    /* border-right-color: #61dafb */
+    /* border-right-color: black; */
   }
 
   100% {

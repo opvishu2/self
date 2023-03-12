@@ -10,16 +10,6 @@ export default function Routss() {
     return (
         <div>
             <BrowserRouter>
-                {/* <>
-                    <Link to="/Experience">EXP</Link>
-                </>
-
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path='/Experience' element={<Experience />} />
-                    <Route path='/Work' element={<Work />} />
-                    <Route path='/Contact' element={<Contact />} />
-                </Routes> */}
                 <LandPage />
             </BrowserRouter>
         </div>

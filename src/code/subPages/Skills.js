@@ -33,11 +33,11 @@ export default function Skills(props) {
 
     let skills = [{ skill_name: "React", skilled: 80 }, { skill_name: "ReactNative", skilled: 90 },
     { skill_name: "Node", skilled: 50 }, { skill_name: "Express", skilled: 60 }, { skill_name: "AWS", skilled: 50 },
-    { skill_name: "Mysql", skilled: 50 }, { skill_name: "Django", skilled: 50 }, { skill_name: "python", skilled: 80 }, { skill_name: "Javascript", skilled: 90 },
+    { skill_name: "MySQL", skilled: 50 }, { skill_name: "Django", skilled: 50 }, { skill_name: "python", skilled: 80 }, { skill_name: "Javascript", skilled: 90 },
     ]
     const decideIconCircle = (el) => {
         console.warn("decideIconCircle : ", el)
-        let color = text_color; let size = 20
+        let color = text_color; let size = is_mobile1 ? 20 : "11vh"
         if (el.skill_name == "React") {
             return <SiSemanticuireact color={color} size={size} />
         }
@@ -82,7 +82,7 @@ export default function Skills(props) {
 
 
     const decideIcon = (el) => {
-        let color = text_color; let size = 23
+        let color = text_color; let size = is_mobile1 ? 23 : "5.5vh"
         if (el.skill_name == "REST-API") {
             return <AiOutlineApi color={color} size={size} />
         }
@@ -150,15 +150,157 @@ export default function Skills(props) {
 
     console.log("theme : ", theme)
     return (
-        <div id="Skills" style={{ height: "100vh", color: "yellow" }}>
+        <div id="Skills" style={{ height: "100vh", }}>
             {console.warn("act : ", active_menu, "is mobile1", is_mobile1)}
             {!is_mobile1 && <div className='skill_p'> {/* PC */}
+                <CSSTransition in={pages[active_menu] == "Skills"} timeout={700} classNames="skill_p_container" unmountOnExit>
+                    <div className='skill_p_container'
+                        style={{
+                            height: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                        }}>
 
+                        <div style={{ height: "100%", width: "100%", display: "flex", justifyContent: "space-between", }}>
+
+
+                            <div style={{ ...styles.flex_common2, width: "50%", }} >
+                                <div style={{
+                                    display: "flex", alignItems: "center", flexDirection: "column", width: "75%",
+                                    minHeight: "80%", maxHeight: "100vh", overflowY: "auto",
+                                }}>
+                                    {skills.map((el, id) =>
+                                        <div style={{ ...styles.flex_common2, width: "100%", marginTop: "3.5vh", }}>
+                                            <div style={{ ...styles.flex_common2, width: "50%", }} >
+                                                <div style={{
+                                                    ...styles.flex_common2, flexDirection: "column",
+                                                    alignItems: "center", width: "90%", marginRight: "2vw",
+                                                }}>
+                                                    {decideIconCircle(el)}
+                                                    <div style={{
+                                                        ...styles.flex_common2, fontSize: is_mobile2 ? "5vh" : "4vh",
+                                                        fontFamily: font2, wordBreak: "break-word", color: text_color,
+                                                    }}>
+                                                        {el.skill_name}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style={{ ...styles.flex_common2, justifyContent: "flex-start", width: "50%", }}>
+                                                <div style={{
+                                                    ...styles.flex_common2,
+                                                }}>
+                                                    <div style={{
+                                                        ...styles.flex_common2, width: "100%", position: "relative", height: "fit-content",
+                                                    }}>
+                                                        <CircularProgressbarWithChildren
+                                                            // percentage={20}
+                                                            value={el.skilled}
+                                                            background
+                                                            styles={{
+                                                                // Customize the root svg element
+                                                                root: {
+                                                                    height: "20vh",
+                                                                    position: "relative",
+                                                                },
+                                                                // Customize the path, i.e. the "completed progress"
+                                                                path: {
+                                                                    // Path color
+                                                                    // stroke: `rgba(0, 0, 0, ${el.skilled / 100})`,
+                                                                    stroke: `${text_color}`,
+                                                                    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                                                                    strokeLinecap: "butt",
+                                                                    // Customize transition animation
+                                                                    transition: 'stroke-dashoffset 2s ease 0s',
+                                                                    // Rotate the path
+                                                                    transform: 'rotate(0.5turn)',
+                                                                    transformOrigin: 'center center',
+                                                                },
+                                                                // Customize the circle behind the path, i.e. the "total progress"
+                                                                trail: {
+                                                                    // Trail color
+                                                                    stroke: `${"gray"}`,
+                                                                    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                                                                    strokeLinecap: 'butt',
+                                                                    // Rotate the trail
+                                                                    transform: 'rotate(0.25turn)',
+                                                                    transformOrigin: 'center center',
+                                                                    // transition: "transform 2s ease",
+                                                                },
+                                                                // Customize the text
+                                                                text: {
+                                                                    // Text color
+                                                                    fill: '#f88',
+                                                                    // Text size
+                                                                    fontSize: is_mobile2 ? "2.5vh" : "2.5vh",
+                                                                },
+                                                                // Customize background - only used when the `background` prop is true
+                                                                background: {
+                                                                    fill: `${BG}`,
+                                                                },
+                                                            }}
+                                                        >
+                                                        </CircularProgressbarWithChildren>
+                                                        <div style={{ position: "absolute", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", }}>
+                                                            <div style={{ ...styles.flex_common2, flexDirection: "column", width: "100%" }}>
+                                                                <div style={{ ...styles.flex_common2, color: text_color, }}>
+                                                                    {/* {decideIconCircle(el)} */}
+                                                                    <div style={{ display: "inline", fontFamily: font2, fontSize: is_mobile2 ? "2.5vh" : "2.5vh", paddingLeft: "0.5vw" }}>{el.skilled}%</div>
+                                                                </div>
+                                                                {/* <div style={{ ...styles.flex_common2, fontSize: is_mobile2 ? "2.5vh" : "2.5vh", wordBreak: "break-word", color: text_color, maxWidth: "50%" }}>
+                                                            {el.skill_name} 
+                                                            </div> */}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    )}
+                                </div>
+
+                            </div>
+
+
+
+
+
+                            <div style={{ width: "50%", }} >
+                                <div style={{ width: "82%", minHeight: "80%", maxHeight: "100vh", overflowY: "auto", }} >
+                                    {all_soft_skills.map((el, id) =>
+                                        <div style={{ height: "fit-content", marginTop: "3.5vh", }}>
+                                            <div style={{ display: "flex", width: "97%", justifyContent: "space-between", marginBottom: "0.3vh" }}>
+                                                {decideIcon(el)}
+                                                <div style={{ ...styles.flex_common2, color: text_color, fontFamily: font2, fontSize: is_mobile2 ? "20px" : "20px", }}>{`${el.skill_name} `}</div>
+                                            </div>
+                                            <ProgressBar
+                                                completed={el.skilled}
+                                                bgColor={text_color}
+                                                height={"4vh"}
+                                                baseBgColor={BG}
+                                                customLabel={`${el.skilled}%`}
+                                                // borderRadius={"1vh"}
+                                                labelSize={"2.5vh"}
+                                                labelColor={BG}
+                                                animateOnRender={true}
+                                                barContainerClassName={`bar_container_p_${theme}${n_mode ? "_n" : "_d"}`}
+                                                initCompletedOnAnimation={50}
+                                                transitionDuration={"1.5s"}
+                                                customLabelStyles={{ fontFamily: font2 }}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </CSSTransition>
             </div>}
 
             {is_mobile1 && <div className='skill_p' style={{ height: "100%" }}>{/* Phone */}
-                <CSSTransition in={pages[active_menu] == "Skills"} timeout={700} classNames="skill_p_container" unmountOnExit>
-                    <div className='skill_p_container'
+                <CSSTransition in={pages[active_menu] == "Skills"} timeout={700} classNames="skill_p_container_p" unmountOnExit>
+                    <div className='skill_p_container_p'
                         style={{
                             height: "100%",
                             display: "flex",
@@ -224,7 +366,10 @@ export default function Skills(props) {
                                             <div style={{ ...styles.flex_common2, color: text_color, }}>{decideIconCircle(el)}
                                                 <div style={{ display: "inline", fontSize: is_mobile2 ? "12px" : "4vw", paddingLeft: "0.5vw" }}>{el.skilled}%</div>
                                             </div>
-                                            <div style={{ ...styles.flex_common2, wordBreak: "break-word", color: text_color, fontSize: is_mobile2 ? "12px" : "2.5vw", maxWidth: "50%" }}>{el.skill_name} </div>
+                                            <div style={{
+                                                ...styles.flex_common2, wordBreak: "break-word", color: text_color,
+                                                fontFamily: font1, fontSize: is_mobile2 ? "12px" : "2.5vw", maxWidth: "50%"
+                                            }}>{el.skill_name} </div>
                                         </div>
                                     </div>
                                 </div>)
@@ -239,7 +384,7 @@ export default function Skills(props) {
                             <div style={{ minHeight: "80%", maxHeight: "100vh", overflowY: "auto", width: "50%", }} >
                                 {all_soft_skills.map((el, id) =>
                                     <div style={{ height: "fit-content", marginTop: "3.5vh", width: "95%", }}>
-                                        <div style={{ display: "flex", width: "97%", justifyContent: "space-between" }}>
+                                        <div style={{ display: "flex", width: "97%", justifyContent: "space-between", }}>
                                             {decideIcon(el)}
                                             <div style={{ color: text_color, fontFamily: font1, fontSize: is_mobile2 ? "12px" : "3vw" }}>{`${el.skill_name} `}</div>
                                         </div>

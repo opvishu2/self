@@ -1,24 +1,50 @@
 /* --------------------------------------skill_p_container -CSSTRANSITIONS -start*/
 
 .skill_p_container-enter {
+    transform: translateX(-25vh);
     opacity: 0;
 }
 
 .skill_p_container-enter-active {
+    transform: translateX(0vh);
     opacity: 1;
-    transition: opacity 500ms;
+    transition: opacity 500ms, transform 800ms;
 }
 
 .skill_p_container-exit {
     opacity: 1;
+    transform: translateX(0);
 }
 
 .skill_p_container-exit-active {
+    transform: translateX(10vh);
+    opacity: 0;
+    transition: opacity 500ms, transform 800ms;
+}
+
+/* --------------------------------------skill_p_container-CSSTRANSITIONS -ends*/
+
+/* --------------------------------------skill_p_container_p -CSSTRANSITIONS -start*/
+
+.skill_p_container_p-enter {
+    opacity: 0;
+}
+
+.skill_p_container_p-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.skill_p_container_p-exit {
+    opacity: 1;
+}
+
+.skill_p_container_p-exit-active {
     opacity: 0;
     transition: opacity 500ms;
 }
 
-/* --------------------------------------skill_p_container-CSSTRANSITIONS -ends*/
+/* --------------------------------------skill_p_container_p-CSSTRANSITIONS -ends*/
 
 .bar_container_p_thm1_n {
     border: 1px solid aquamarine;

@@ -144,7 +144,7 @@ body {}
 
 
 
-@keyframes typing {
+/* @keyframes typing {
   from {
     width: 0
   }
@@ -152,11 +152,10 @@ body {}
   to {
     width: 45%
   }
-}
-
+} */
+/* 
 @keyframes typingg {
 
-  /* For moblie */
   from {
     width: 0
   }
@@ -164,7 +163,7 @@ body {}
   to {
     width: 80%
   }
-}
+} */
 
 
 @keyframes blinking {

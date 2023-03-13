@@ -179,8 +179,22 @@ export default function LandPage(props) {
                     colors={colors}
                     toggleTopNav={toggleTopNav}
                     theme={theme}
+                    is_mobile1={is_mobile1}
+                    is_mobile2={is_mobile2}
                 />} />
-                <Route path='/Skills' element={<Skills />} />
+                <Route path='/Skills' element={<Skills
+                    nav={nav}
+                    setting_modal={setting_modal}
+                    text_color={text_color}
+                    colors={colors}
+                    theme={theme}
+                    is_mobile1={is_mobile1}
+                    is_mobile2={is_mobile2}
+                    active_menu={active_menu}
+                    pages={pages}
+                    BG={BG}
+                    n_mode={n_mode}
+                />} />
                 <Route path='/Experience' element={<Experience />} />
                 <Route path='/Work' element={<Work />} />
                 <Route path='/Contact' element={<Contact />} />

@@ -10,6 +10,11 @@ import { theme_combinations as colors } from '../global_store/theme_combinations
 import TestClass from './TestClass';
 import TestFunctional from './testFunctional';
 import { MdOutlineDarkMode } from "react-icons/md";
+import { AiFillCaretLeft } from "react-icons/ai";
+import { TfiShiftLeftAlt, TfiShiftRightAlt } from "react-icons/tfi";
+import { IoIosSunny } from "react-icons/io";
+import { GiSun } from "react-icons/gi";
+import { IoMoonSharp, } from "react-icons/io5";
 import { FaChevronCircleRight } from "react-icons/fa";
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from "react-icons/ai";
 import { ActionChangeTheme, ActionChangeDayNight } from '../global_store/theme_reducer';
@@ -33,6 +38,11 @@ export default function LandPage(props) {
     const YscrollRef = useRef(undefined)
     const settingRef = useRef(null)
     const [y_scroll, setYScroll] = useState(0)
+    const is_high_pc1 = useMediaQuery({ query: `(min-width: 2048px)` });
+    const is_mid_high_pc1 = useMediaQuery({ query: `(min-width: 1600px)` });
+    const is_low_pc1 = useMediaQuery({ query: `(max-width: 1250px)` });
+    const is_tablet1 = useMediaQuery({ query: `(max-width: 1020px)` });
+    const is_tablet2 = useMediaQuery({ query: `(max-width: 800px)` });
     const is_mobile1 = useMediaQuery({ query: `(max-width: 549px)` });
     const is_mobile2 = useMediaQuery({ query: `(max-width: 300px)` });
     const side_setting_off = useMediaQuery({ query: `(min-width: 1921px)` });
@@ -42,7 +52,7 @@ export default function LandPage(props) {
 
     const theme = useSelector((state) => state.AllReducerCombined.themeChangeReducers.active_theme)
     const n_mode = useSelector((state) => state.AllReducerCombined.themeChangeReducers.night_mode)
-    let { bg_day, bg_night, style1, style2, style3, style4, font1, font2, font3 } = colors[theme]
+    let { bg_day, bg_night, style1, style2, style3, style4, font1, font2, font3, font4 } = colors[theme]
     let BG = n_mode ? bg_night : bg_day
     let text_color = n_mode ? style1 : style4
 
@@ -74,7 +84,7 @@ export default function LandPage(props) {
 
     const handleScroll = async (e) => {
         const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-        const before_scroll_margin = (window.innerHeight / 2) - 50
+        const before_scroll_margin = (window.innerHeight / 2) + 220
         let route_index = Math.abs(Math.trunc((e.target.scrollHeight - e.target.scrollTop - before_scroll_margin) / e.target.clientHeight) - (pages.length - 1))
 
         if (Math.trunc(route_index) !== curr_route_page) { // For changing route name in sync with scroll
@@ -141,7 +151,7 @@ export default function LandPage(props) {
 
 
     // console.warn("process.env == ", process.env)
-    console.warn("PH : ", is_mobile1)
+    console.warn("active menu :", active_menu, "PH : ", is_mobile1, "\n:TAB : ", is_tablet1)
     { console.log("window.innerWidth : ", window.innerWidth) }
     // console.log("nav : ", nav)
     // console.log("y_scroll : ", y_scroll)
@@ -167,21 +177,33 @@ export default function LandPage(props) {
                 pages={pages}
                 is_mobile1={is_mobile1}
                 is_mobile2={is_mobile2}
+                is_tablet1={is_tablet1}
+                is_tablet2={is_tablet2}
+                is_high_pc1={is_high_pc1}
                 side_setting_off={side_setting_off}
+                is_mid_high_pc1={is_mid_high_pc1}
             />
 
 
             {nav == "left" && <Routes>
-                <Route path="/" element={<About
-                    nav={nav}
-                    setting_modal={setting_modal}
-                    text_color={text_color}
-                    colors={colors}
-                    toggleTopNav={toggleTopNav}
-                    theme={theme}
-                    is_mobile1={is_mobile1}
-                    is_mobile2={is_mobile2}
-                />} />
+                <Route path="/" element={
+
+                    <About
+                        nav={nav}
+                        setting_modal={setting_modal}
+                        text_color={text_color}
+                        colors={colors}
+                        toggleTopNav={toggleTopNav}
+                        theme={theme}
+                        is_mobile1={is_mobile1}
+                        is_mobile2={is_mobile2}
+                        font4={font4}
+                        is_tablet1={is_tablet1}
+                        is_tablet2={is_tablet2}
+                        is_low_pc1={is_low_pc1}
+                        is_high_pc1={is_high_pc1}
+                        is_mid_high_pc1={is_mid_high_pc1}
+                    />} />
                 <Route path='/Skills' element={<Skills
                     nav={nav}
                     setting_modal={setting_modal}
@@ -212,6 +234,12 @@ export default function LandPage(props) {
                         toggleTopNav={toggleTopNav}
                         theme={theme}
                         is_mobile1={is_mobile1}
+                        font4={font4}
+                        is_tablet1={is_tablet1}
+                        is_tablet2={is_tablet2}
+                        is_low_pc1={is_low_pc1}
+                        is_high_pc1={is_high_pc1}
+                        is_mid_high_pc1={is_mid_high_pc1}
                     />
                     <Skills
                         nav={nav}
@@ -256,7 +284,10 @@ export default function LandPage(props) {
                 }}>
                     <div style={{ height: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", }}>
                         <div style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", height: "90%", width: "100%", }}>
-                            {<div style={{ position: "absolute", display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", background: text_color, opacity: 0.1 }}></div>}
+                            {<div style={{
+                                position: "absolute", display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px",
+                                background: text_color, opacity: 0.2
+                            }}></div>}
                             <div style={{ zIndex: 1, display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", }}>
                                 {
                                     Object.keys(colors).map((thme, id) => (
@@ -271,8 +302,10 @@ export default function LandPage(props) {
                                 }
                             </div>
                             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", alignItems: "flex-end", height: "30%", width: is_mobile1 ? "40%" : "20%", }}>
-                                <MdOutlineDarkMode color={text_color} size={30} onClick={handleDayNight} style={{ cursor: 'pointer' }} />
-                                <AiOutlineDoubleRight color={text_color} size={30} onClick={() => { setSettingModal(false) }} style={{ cursor: "pointer" }} />
+                                {n_mode ? <IoIosSunny color={text_color} size={30} onClick={handleDayNight} style={{ cursor: 'pointer' }} />
+                                    :
+                                    <MdOutlineDarkMode color={text_color} size={30} onClick={handleDayNight} style={{ cursor: 'pointer' }} />}
+                                <TfiShiftRightAlt color={text_color} size={30} onClick={() => { setSettingModal(false) }} style={{ cursor: "pointer" }} />
                             </div>
                         </div>
                     </div>
@@ -302,10 +335,13 @@ export default function LandPage(props) {
                 }}>
                     <div style={{ height: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", minWidth: "350px", }}>
                         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", alignItems: "flex-end", height: "30%", marginRight: 20 }}>
-                            <AiOutlineDoubleLeft color={text_color} size={30} onClick={() => { setSettingModal(false) }} style={{ cursor: "pointer" }} />
+                            <TfiShiftLeftAlt color={text_color} size={30} onClick={() => { setSettingModal(false) }} style={{ cursor: "pointer" }} />
                         </div>
                         <div style={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", height: "90%", width: "100%", }}>
-                            {<div style={{ position: "absolute", display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", background: text_color, opacity: 0.1, }}></div>}
+                            {<div style={{
+                                position: "absolute", display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%",
+                                height: "60%", borderRadius: "15px", background: text_color, opacity: 0.4,
+                            }}></div>}
 
                             <div style={{ zIndex: 1, display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "100%", height: "60%", borderRadius: "15px", padding: "0 15px 0 15px", }}>
                                 {
@@ -323,7 +359,11 @@ export default function LandPage(props) {
 
                         </div>
                         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", alignItems: "flex-end", height: "30%", marginLeft: 20 }}>
-                            <MdOutlineDarkMode color={text_color} size={30} onClick={handleDayNight} style={{ cursor: 'pointer' }} />
+                            {n_mode ?
+                                <IoIosSunny color={text_color} size={30} onClick={handleDayNight} style={{ cursor: 'pointer' }} />
+                                :
+                                <IoMoonSharp color={text_color} size={30} onClick={handleDayNight} style={{ cursor: 'pointer' }} />
+                            }
                         </div>
                     </div>
                 </div>

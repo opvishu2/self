@@ -36,7 +36,6 @@ export default function Skills(props) {
     { skill_name: "MySQL", skilled: 50 }, { skill_name: "Django", skilled: 50 }, { skill_name: "python", skilled: 80 }, { skill_name: "Javascript", skilled: 90 },
     ]
     const decideIconCircle = (el) => {
-        console.warn("decideIconCircle : ", el)
         let color = text_color; let size = is_mobile1 ? 20 : "11vh"
         if (el.skill_name == "React") {
             return <SiSemanticuireact color={color} size={size} />
@@ -151,7 +150,6 @@ export default function Skills(props) {
     console.log("theme : ", theme)
     return (
         <div id="Skills" style={{ height: "100vh", }}>
-            {console.warn("act : ", active_menu, "is mobile1", is_mobile1)}
             {!is_mobile1 && <div className='skill_p'> {/* PC */}
                 <CSSTransition in={pages[active_menu] == "Skills"} timeout={700} classNames="skill_p_container" unmountOnExit>
                     <div className='skill_p_container'
@@ -167,7 +165,7 @@ export default function Skills(props) {
                             <div style={{ ...styles.flex_common2, width: "50%", }} >
                                 <div style={{
                                     display: "flex", alignItems: "center", flexDirection: "column", width: "75%",
-                                    minHeight: "80%", maxHeight: "100vh", overflowY: "auto",
+                                    minHeight: "80%", maxHeight: "95vh", overflowY: "auto",
                                 }}>
                                     {skills.map((el, id) =>
                                         <div style={{ ...styles.flex_common2, width: "100%", marginTop: "3.5vh", }}>
@@ -200,7 +198,7 @@ export default function Skills(props) {
                                                             styles={{
                                                                 // Customize the root svg element
                                                                 root: {
-                                                                    height: "20vh",
+                                                                    height: "19vh",
                                                                     position: "relative",
                                                                 },
                                                                 // Customize the path, i.e. the "completed progress"
@@ -266,22 +264,22 @@ export default function Skills(props) {
 
 
 
-                            <div style={{ width: "50%", }} >
-                                <div style={{ width: "82%", minHeight: "80%", maxHeight: "100vh", overflowY: "auto", }} >
+                            <div style={{ ...styles.flex_common2, width: "50%", }} >
+                                <div style={{ width: "82%", minHeight: "80%", maxHeight: "95vh", overflowY: "auto", }} >
                                     {all_soft_skills.map((el, id) =>
                                         <div style={{ height: "fit-content", marginTop: "3.5vh", }}>
-                                            <div style={{ display: "flex", width: "97%", justifyContent: "space-between", marginBottom: "0.3vh" }}>
+                                            <div style={{ display: "flex", width: "97%", justifyContent: "space-between", marginBottom: "0.5vh" }}>
                                                 {decideIcon(el)}
                                                 <div style={{ ...styles.flex_common2, color: text_color, fontFamily: font2, fontSize: is_mobile2 ? "20px" : "20px", }}>{`${el.skill_name} `}</div>
                                             </div>
                                             <ProgressBar
                                                 completed={el.skilled}
                                                 bgColor={text_color}
-                                                height={"4vh"}
+                                                height={"3vh"}
                                                 baseBgColor={BG}
                                                 customLabel={`${el.skilled}%`}
                                                 // borderRadius={"1vh"}
-                                                labelSize={"2.5vh"}
+                                                labelSize={"2vh"}
                                                 labelColor={BG}
                                                 animateOnRender={true}
                                                 barContainerClassName={`bar_container_p_${theme}${n_mode ? "_n" : "_d"}`}
@@ -307,10 +305,13 @@ export default function Skills(props) {
                             alignItems: "center",
                         }}>
 
-                        <div style={{ height: "100%", overflowY: "auto", width: "100%", display: "flex", justifyContent: "space-between", }}>
+                        <div style={{
+                            height: "100%", overflowY: "auto", width: "100%", display: "flex", justifyContent: "space-between",
+                            alignItems: "center"
+                        }}>
 
 
-                            <div style={{ minHeight: "80%", maxHeight: "100vh", overflowY: "auto", width: "50%", }} >
+                            <div style={{ minHeight: "80%", maxHeight: "90vh", overflowY: "auto", width: "50%", }} >
                                 {skills.map((el, id) =>
                                 (<div style={{ height: "fit-content", marginTop: "3.5vh", width: "100%", position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <CircularProgressbarWithChildren
@@ -381,30 +382,35 @@ export default function Skills(props) {
 
 
 
-                            <div style={{ minHeight: "80%", maxHeight: "100vh", overflowY: "auto", width: "50%", }} >
-                                {all_soft_skills.map((el, id) =>
-                                    <div style={{ height: "fit-content", marginTop: "3.5vh", width: "95%", }}>
-                                        <div style={{ display: "flex", width: "97%", justifyContent: "space-between", }}>
-                                            {decideIcon(el)}
-                                            <div style={{ color: text_color, fontFamily: font1, fontSize: is_mobile2 ? "12px" : "3vw" }}>{`${el.skill_name} `}</div>
+                            <div style={{ ...styles.flex_common2, height: "100%", width: "50%", }} >
+                                <div style={{
+                                    display: "flex", flexDirection: "column", width: "86%", minHeight: "80%",
+                                    maxHeight: "90vh", overflowY: "auto",
+                                }}>
+                                    {all_soft_skills.map((el, id) =>
+                                        <div style={{ height: "fit-content", marginTop: "3.5vh", width: "100%", }}>
+                                            <div style={{ display: "flex", width: "97%", justifyContent: "space-between", marginBottom: "0.5vh" }}>
+                                                {decideIcon(el)}
+                                                <div style={{ color: text_color, fontFamily: font1, fontSize: is_mobile2 ? "12px" : "3vw" }}>{`${el.skill_name} `}</div>
+                                            </div>
+                                            <ProgressBar
+                                                completed={el.skilled}
+                                                bgColor={text_color}
+                                                height={"3vh"}
+                                                baseBgColor={BG}
+                                                customLabel={`${el.skilled}%`}
+                                                // borderRadius={"1vh"}
+                                                labelSize={"1.8vh"}
+                                                labelColor={BG}
+                                                animateOnRender={true}
+                                                barContainerClassName={`bar_container_p_${theme}${n_mode ? "_n" : "_d"}`}
+                                                initCompletedOnAnimation={50}
+                                                transitionDuration={"0.8s"}
+                                                customLabelStyles={{ fontFamily: font3 }}
+                                            />
                                         </div>
-                                        <ProgressBar
-                                            completed={el.skilled}
-                                            bgColor={text_color}
-                                            height={"3vh"}
-                                            baseBgColor={BG}
-                                            customLabel={`${el.skilled}%`}
-                                            // borderRadius={"1vh"}
-                                            labelSize={"1.8vh"}
-                                            labelColor={BG}
-                                            animateOnRender={true}
-                                            barContainerClassName={`bar_container_p_${theme}${n_mode ? "_n" : "_d"}`}
-                                            initCompletedOnAnimation={50}
-                                            transitionDuration={"0.8s"}
-                                            customLabelStyles={{ fontFamily: font3 }}
-                                        />
-                                    </div>
-                                )}
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>

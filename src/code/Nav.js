@@ -50,6 +50,7 @@ export default function Nav(props) {
     const theme = useSelector((state) => state.AllReducerCombined.themeChangeReducers.active_theme)
     const n_mode = useSelector((state) => state.AllReducerCombined.themeChangeReducers.night_mode)
     let { bg_day, bg_night, style1, style2, style3, style4, style5, font1, font2, font3 } = colors[theme]
+    let { is_tablet1, is_low_pc1, is_high_pc1 } = props
     let BG = n_mode ? bg_night : bg_day
     let text_color = n_mode ? style1 : style4
     let dWidth = window.innerWidth
@@ -63,16 +64,22 @@ export default function Nav(props) {
     let logoo_thm_1_night = props.is_mobile1 ? logo_thm_1_night_phone : logo_thm_1_night
     let logoo_thm_3 = props.is_mobile1 ? logo_thm_3_phone : logo_thm_3
     let logoo_thm_4 = props.is_mobile1 ? logo_thm_4_phone : logo_thm_4
+    let top_font_size_hover = is_high_pc1 ? "4vh" : is_mobile1 ? "6vw" : is_tablet1 ? "3.5vh" : is_low_pc1 ? "3.5vh" : "3.5vh"
+    let top_font_size_no_hover = is_high_pc1 ? "3vh" : is_mobile1 ? "4vw" : is_tablet1 ? "2.5vh" : is_low_pc1 ? "2.5vh" : "2.5vh"
+    let borderRadius = "0.7vh"
+
+    let top_icons_size = is_high_pc1 ? "4vh" : 30
 
     const handleTopNavButtonsStyle = (id) => {
-        let styles = { bg: "", clr: "", brdr: "", fontSize: "" }
+        let styles = { bg: "", clr: "", brdr: "", fontSize: "", borderRadius: "" }
         styles.bg = active_menu == id ? style3 : ""
         styles.brdr = `${theme == "thm1" ? "2px" : "2px"} solid ${text_color}`
         styles.clr = active_menu == id ? n_mode ? BG : style5 : text_color
-        styles.fontSize = is_mobile1 ? active_menu == id ? "6vw" : "4vw" : active_menu == id ? "3.5vh" : "2.5vh"
-
+        styles.fontSize = is_high_pc1 ? active_menu == id ? "4vh" : "3vh" : is_mobile1 ? active_menu == id ? "6vw" : "4vw" : is_tablet1 ? active_menu == id ? "3.5vh" : "2.5vh" : is_low_pc1 ? active_menu == id ? "3.5vh" : "2.5vh" : active_menu == id ? "3.5vh" : "2.5vh"
+        styles.borderRadius = "0.7vh"
         return styles
     }
+
     const handleSideNavButtonsStyle = (id) => {
         let styles = { bg: "", clr: "", brdr: "" }
         styles.brdr = props.active_menu == id ? `2px solid ${text_color}` : ""
@@ -121,20 +128,26 @@ export default function Nav(props) {
 
             </div>
 
-            {!props.is_mobile1 && // NAV FOR PC
+            {!props.is_mobile1 && //  FOR PC
                 <CSSTransition in={(props.nav == "top")} timeout={1000} classNames="nav_top" unmountOnExit>
                     <div className={'nav_top'} style={{ color: style3, }}>
                         {!props.is_mobile2 && <div className='sign_top' >
-                            <img className='nav_logo' style={{ minHeight: props.is_mobile1 ? "30px" : "", position: props.is_mobile1 ? "fixed" : "", left: props.is_mobile1 ? "2vw" : "", top: props.is_mobile1 ? "2vh" : "" }} src={handleImage()} />
+                            <img className='nav_logo' style={{
+                                minHeight: props.is_mobile1 ? "30px" : "", position: props.is_mobile1 ? "fixed" : "",
+                                left: props.is_mobile1 ? "2vw" : "", top: props.is_mobile1 ? "2vh" : ""
+                            }} src={handleImage()} />
                         </div>}
-                        <div className='top_nav_right' style={{ fontFamily: font2, position: props.is_mobile1 ? "fixed" : "", left: props.is_mobile1 ? dWidth * 0.45 : "", minWidth: props.is_mobile1 ? dWidth * 0.40 : "", maxWidth: dWidth * 0.50, }}>
+                        <div className='top_nav_right' style={{
+                            fontFamily: font2, position: props.is_mobile1 ? "fixed" : "",
+                            left: props.is_mobile1 ? dWidth * 0.45 : "", minWidth: props.is_mobile1 ? dWidth * 0.40 : "", maxWidth: dWidth * 0.50,
+                        }}>
                             <div className={'nav_top_menus'}>
 
                                 <div style={{ width: 30, height: "5vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <CSSTransition in={(!props.is_mobile1 && props.show_triple_bar)} timeout={1000} classNames="hide" unmountOnExit>
                                         <div className='hide'
                                             style={{ display: "flex", justifyContent: "center", alignItems: "center", marginRight: "2vw" }}>
-                                            <IoIosArrowDropleftCircle size={35} color={text_color}
+                                            <IoIosArrowDropleftCircle size={top_icons_size} color={text_color}
                                                 style={{ cursor: "pointer" }}
                                                 onClick={() => {
                                                     props.setNav(false)
@@ -152,16 +165,19 @@ export default function Nav(props) {
                                         onMouseEnter={(e) => { if (id !== props.active_menu) { e.target.style.color = BG; e.target.style.background = style3; e.target.style.fontSize = "3.5vh" } }}
                                         onMouseLeave={(e) => { if (id !== props.active_menu) { e.target.style.color = text_color; e.target.style.background = "inherit"; e.target.style.fontSize = "2.5vh" } }}
                                         onClick={() => { props.setActiveMenu(id); props.handleNavClickScroll(el) }}
-                                        style={{ fontSize: handleTopNavButtonsStyle(id).fontSize, background: handleTopNavButtonsStyle(id).bg, color: handleTopNavButtonsStyle(id).clr }}
+                                        style={{
+                                            fontSize: handleTopNavButtonsStyle(id).fontSize, background: handleTopNavButtonsStyle(id).bg,
+                                            color: handleTopNavButtonsStyle(id).clr, borderRadius: handleTopNavButtonsStyle(id).borderRadius
+                                        }}
                                     >{el}</Link>
                                 )}
-                                {!props.is_mobile1 && <div className={"nav1_top"}
+                                {<div className={"nav1_top"}
                                     onClick={() => { props.setActiveMenu(4) }}
-                                    style={{ border: handleTopNavButtonsStyle().brdr }} >
-                                    {!props.is_mobile1 && < a className='cv' href={cv} target="_blank" style={{ color: text_color }}
+                                    style={{ border: handleTopNavButtonsStyle().brdr, fontSize: top_font_size_no_hover, borderRadius: borderRadius }} >
+                                    {< a className='cv' href={cv} target="_blank" style={{ color: text_color }}
                                     >Resume</a>}
                                 </div>}
-                                {!props.is_mobile1 && <FaReact className='r_icon' size={28} color={text_color} onClick={props.handleSetting} />}
+                                {<FaReact className='r_icon' size={top_icons_size} color={text_color} onClick={props.handleSetting} />}
                             </div>
                         </div>
                     </div>

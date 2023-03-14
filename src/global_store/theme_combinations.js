@@ -14,6 +14,7 @@ export const theme_combinations = {
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",
+        font4: "'Tangerine', cursive",
     },
     // thm1: {
     //     bg_day: "whitesmoke",
@@ -40,6 +41,7 @@ export const theme_combinations = {
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",
+        font4: "'Tangerine', cursive",
     },
     thm3: {
         // bg1: "black",
@@ -53,6 +55,7 @@ export const theme_combinations = {
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",
+        font4: "'Tangerine', cursive",
     },
     thm4: {
         // bg1: "white",
@@ -66,6 +69,7 @@ export const theme_combinations = {
         font1: 'Lato, sans-serif',
         font2: "Redressed, cursive",
         font3: "Croissant One,cursive",
+        font4: "'Tangerine', cursive",
     },
 }
 
